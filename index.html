@@ -525,7 +525,7 @@
     .proj-link:hover { gap: .7rem; }
 
     /* ============================================================
-       DASHBOARD EMBED
+       DASHBOARD SECTION — TABS
     ============================================================ */
     .dash-bg {
       background: var(--bg2);
@@ -535,7 +535,7 @@
     .dash-top {
       display: flex; align-items: flex-start;
       justify-content: space-between; flex-wrap: wrap;
-      gap: 1.5rem; margin-bottom: 2rem;
+      gap: 1.5rem; margin-bottom: 2.2rem;
     }
     .dash-meta p {
       font-size: .9rem; font-weight: 300; color: var(--text2);
@@ -556,6 +556,31 @@
       animation: blink 1.8s ease-in-out infinite;
     }
 
+    /* Tab strip */
+    .dash-tabs {
+      display: flex; gap: .5rem; flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+    .dash-tab {
+      font-size: .78rem; font-weight: 600; letter-spacing: .04em;
+      color: var(--text2);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: .55rem 1.2rem;
+      cursor: none;
+      transition: color .2s, border-color .2s, background .2s;
+    }
+    .dash-tab:hover {
+      color: var(--text); border-color: var(--border2);
+    }
+    .dash-tab.active {
+      color: var(--bg);
+      background: var(--gold);
+      border-color: var(--gold);
+    }
+
+    /* Embed shell */
     .embed-shell {
       border-radius: 16px; overflow: hidden;
       border: 1px solid var(--border);
@@ -575,6 +600,8 @@
       margin-left: .6rem; font-size: .7rem; color: var(--text2);
       font-family: monospace; letter-spacing: .02em;
     }
+
+    /* Shimmer */
     .shimmer {
       position: absolute; inset: 40px 0 0 0;
       z-index: 2; pointer-events: none;
@@ -584,7 +611,12 @@
     }
     @keyframes shim { to { background-position: -200% 0; } }
     .embed-shell.loaded .shimmer { opacity: 0; }
-    .embed-shell iframe {
+
+    /* Panel visibility */
+    .dash-panel { display: none; }
+    .dash-panel.active { display: block; }
+
+    .dash-panel iframe {
       width: 100%; height: 541.25px; border: none; display: block;
       position: relative; z-index: 1;
     }
@@ -752,6 +784,7 @@
       .expertise-grid, .projects-grid { grid-template-columns: 1fr; }
       .cert-grid, .stack-grid { grid-template-columns: 1fr 1fr; }
       footer { flex-direction: column; text-align: center; }
+      .dash-panel iframe { height: 373.5px; }
     }
     @media (max-width: 480px) {
       .cert-grid { grid-template-columns: 1fr; }
@@ -1054,39 +1087,78 @@
     </div>
   </div>
 
-  <!-- ══════════════ DASHBOARD EMBED ══════════════ -->
-  <div id="dashboard" class="section-full">
+  <!-- ══════════════ DASHBOARD SECTION ══════════════ -->
+  <div id="dashboard" class="section-full dash-bg">
     <div class="section-full-inner">
       <p class="eyebrow reveal">Live Work</p>
-      <h2 class="section-title reveal">Finance <em>Dashboard</em></h2>
+      <h2 class="section-title reveal">Power BI <em>Dashboards</em></h2>
+
       <div class="dash-top reveal">
         <div class="dash-meta">
-          <p>A real-time financial intelligence report tracking revenue, expenses, and KPIs
-          across business units — built entirely in Power BI.</p>
+          <p>Interactive Power BI reports covering sales analysis, HR analytics, and insurance —
+          each built end-to-end with real data modeling and DAX.</p>
         </div>
         <div class="live-chip">
           <span class="live-dot"></span>
           Live &amp; Interactive
         </div>
       </div>
-      <div class="embed-shell reveal" id="embedWrap">
-        <div class="shimmer" id="shimmer"></div>
-        <div class="embed-chrome">
-          <div class="dc dc-r"></div>
-          <div class="dc dc-y"></div>
-          <div class="dc dc-g"></div>
-          <span class="embed-url">app.powerbi.com · finance_dashboard</span>
-        </div>
-        <iframe
-          id="pbiFrame"
-          title="finance_dashboard"
-          width="1140"
-          height="541.25"
-          src="https://app.powerbi.com/view?r=eyJrIjoiNDhlZjQ0MjAtM2Y4NC00NTgwLWI3ZTAtNTEwYmZmZGFhYjg1IiwidCI6IjY5N2NkYzBhLTU2OTYtNDRmYS04ZmQ0LWMzNWI2MzFjYTBhZCJ9"
-          frameborder="0"
-          allowFullScreen="true"
-        ></iframe>
+
+      <!-- Tab strip -->
+      <div class="dash-tabs reveal">
+        <button class="dash-tab active" data-tab="sales">📊 Sales Analysis</button>
+        <button class="dash-tab" data-tab="hp">👥 HR Analytics</button>
+        <button class="dash-tab" data-tab="insurance">🛡️ Insurance Project</button>
       </div>
+
+      <!-- Panel 1: Sales Analysis -->
+      <div class="dash-panel active" id="panel-sales">
+        <div class="embed-shell" id="shell-sales">
+          <div class="shimmer" id="shimmer-sales"></div>
+          <div class="embed-chrome">
+            <div class="dc dc-r"></div><div class="dc dc-y"></div><div class="dc dc-g"></div>
+            <span class="embed-url">app.powerbi.com · sales_analysis</span>
+          </div>
+          <iframe
+            title="Sales Analysis (1)"
+            src="https://app.powerbi.com/view?r=eyJrIjoiY2Y0ODdiMzQtMDdmNi00YTQ3LWE1NTQtNTE4NGMzZWZiYjBhIiwidCI6IjY5N2NkYzBhLTU2OTYtNDRmYS04ZmQ0LWMzNWI2MzFjYTBhZCJ9"
+            frameborder="0" allowFullScreen="true"
+          ></iframe>
+        </div>
+      </div>
+
+      <!-- Panel 2: HP -->
+      <div class="dash-panel" id="panel-hp">
+        <div class="embed-shell" id="shell-hp">
+          <div class="shimmer" id="shimmer-hp"></div>
+          <div class="embed-chrome">
+            <div class="dc dc-r"></div><div class="dc dc-y"></div><div class="dc dc-g"></div>
+            <span class="embed-url">app.powerbi.com · hr_analytics</span>
+          </div>
+          <iframe
+            title="hp"
+            src="https://app.powerbi.com/view?r=eyJrIjoiZGQzMzc2ZTEtNzJmMy00NTJhLWJlNDctMWJkZWQ0NWE0YWZhIiwidCI6IjY5N2NkYzBhLTU2OTYtNDRmYS04ZmQ0LWMzNWI2MzFjYTBhZCJ9"
+            frameborder="0" allowFullScreen="true"
+          ></iframe>
+        </div>
+      </div>
+
+      <!-- Panel 3: Insurance -->
+      <div class="dash-panel" id="panel-insurance">
+        <div class="embed-shell" id="shell-insurance">
+          <div class="shimmer" id="shimmer-insurance"></div>
+          <div class="embed-chrome">
+            <div class="dc dc-r"></div><div class="dc dc-y"></div><div class="dc dc-g"></div>
+            <span class="embed-url">app.powerbi.com · insurance_project</span>
+          </div>
+          <iframe
+            title="Insurence project"
+            src="https://app.powerbi.com/reportEmbed?reportId=afa88c0a-768e-4aaa-87b2-e32b5ae45a8c&autoAuth=true&ctid=697cdc0a-5696-44fa-8fd4-c35b631ca0ad&actionBarEnabled=true"
+            frameborder="0" allowFullScreen="true"
+          ></iframe>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -1225,11 +1297,51 @@
     }, { threshold: 0.2 });
     document.querySelectorAll('.skills-col').forEach(el => skillObserver.observe(el));
 
-    /* ── Power BI shimmer ── */
-    document.getElementById('pbiFrame').addEventListener('load', () => {
-      document.getElementById('embedWrap').classList.add('loaded');
+    /* ── Dashboard Tabs ── */
+    const tabs   = document.querySelectorAll('.dash-tab');
+    const panels = document.querySelectorAll('.dash-panel');
+    const loadedShells = new Set();
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const target = tab.dataset.tab;
+
+        // Update tab active state
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        // Show matching panel
+        panels.forEach(p => p.classList.remove('active'));
+        document.getElementById('panel-' + target).classList.add('active');
+
+        // Hide shimmer after delay if not already loaded
+        const shellId = 'shell-' + target;
+        if (!loadedShells.has(shellId)) {
+          setTimeout(() => {
+            const shell = document.getElementById(shellId);
+            if (shell) shell.classList.add('loaded');
+            loadedShells.add(shellId);
+          }, 5000);
+        }
+      });
     });
-    setTimeout(() => document.getElementById('embedWrap').classList.add('loaded'), 6000);
+
+    /* ── iframe load events for shimmer removal ── */
+    ['sales', 'hp', 'insurance'].forEach(id => {
+      const shell = document.getElementById('shell-' + id);
+      const iframe = shell && shell.querySelector('iframe');
+      if (iframe) {
+        iframe.addEventListener('load', () => {
+          shell.classList.add('loaded');
+          loadedShells.add('shell-' + id);
+        });
+      }
+      // Fallback timeout for first panel
+      if (id === 'sales') {
+        setTimeout(() => shell && shell.classList.add('loaded'), 6000);
+        loadedShells.add('shell-sales');
+      }
+    });
   </script>
 </body>
 </html>
