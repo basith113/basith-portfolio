@@ -6,55 +6,88 @@
 <title>Abdul Basith J — Data Analyst | Microsoft Fabric &amp; Power BI | Open to Dubai</title>
 <meta name="description" content="Abdul Basith J — Data Analyst with 1.6+ years building SQL analytics, Power BI &amp; Apache Superset dashboards, and Microsoft Fabric projects. Open to work in Dubai." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,600&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 <style>
 /* ============================================================
-   RESET & TOKENS
+   RESET & TOKENS — "FABRIC BLUEPRINT" SYSTEM
+   bg: deep blueprint navy · line: schematic cyan · markup: red-line amber
 ============================================================ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --bg:       #05060a;
-  --bg2:      #090b13;
-  --bg3:      #0c0f1a;
-  --surface:  #10131f;
-  --surface2: #141828;
-  --border:   rgba(255,255,255,.07);
-  --border2:  rgba(255,255,255,.13);
-  --text:     #e2e5ef;
-  --text2:    #8a90a3;
-  --text3:    #565c70;
-  --gold:     #e3b158;
-  --gold-dim: rgba(227,177,88,.1);
-  --gold-glow:rgba(227,177,88,.22);
-  --fabric:   #4fa8ff;
-  --fabric-dim: rgba(79,168,255,.1);
-  --fabric-glow: rgba(79,168,255,.22);
-  --green:    #3ecf8e;
-  --white:    #f3f4f9;
-  --radius:   14px;
-  --radius-lg:20px;
-  --maxw:     1180px;
+  --bg:        #081222;
+  --bg2:       #0a1729;
+  --bg3:       #0d1c31;
+  --surface:   #0e2038;
+  --surface2:  #112542;
+  --line:      rgba(125,211,252,.16);
+  --line2:     rgba(125,211,252,.3);
+  --cyan:      #7dd3fc;
+  --cyan-soft: #a6e3ff;
+  --cyan-dim:  rgba(125,211,252,.09);
+  --cyan-glow: rgba(125,211,252,.28);
+  --amber:     #ff9d5c;
+  --amber-dim: rgba(255,157,92,.1);
+  --amber-glow:rgba(255,157,92,.28);
+  --green:     #6ee7b7;
+  --text:      #dae7f2;
+  --text2:     #7c93ac;
+  --text3:     #465873;
+  --white:     #f2f8ff;
+  --radius:    2px;
+  --maxw:      1180px;
 }
 html{scroll-behavior:smooth;font-size:16px;}
 body{
-  font-family:'DM Sans',sans-serif;
+  font-family:'Inter',sans-serif;
   background:var(--bg);
   color:var(--text);
   min-height:100vh;
   overflow-x:hidden;
+  font-weight:300;
 }
 img{max-width:100%;display:block;}
-::selection{background:var(--gold-glow);color:var(--white);}
+::selection{background:var(--cyan-glow);color:var(--bg);}
 a{color:inherit;}
 button{font-family:inherit;}
-
 @media (hover:hover){ body{cursor:none;} }
 
-.mono{font-family:'DM Mono',monospace;}
-.display{font-family:'Fraunces',serif;font-optical-sizing:auto;}
-.gold{color:var(--gold);}
-.fabric-c{color:var(--fabric);}
+.mono{font-family:'IBM Plex Mono',monospace;}
+.display{font-family:'Space Grotesk',sans-serif;}
+.cyan{color:var(--cyan);}
+.amber{color:var(--amber);}
 .muted{color:var(--text2);}
+
+/* ============================================================
+   BLUEPRINT GRID BACKDROP
+============================================================ */
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size:64px 64px;
+  opacity:.55;
+}
+body::after{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size:16px 16px;
+  opacity:.14;
+}
+main, nav, footer, #loader{position:relative;z-index:1;}
+
+/* Corner registration crosshairs — recurring signature device */
+.crop{position:absolute;width:18px;height:18px;pointer-events:none;z-index:2;opacity:.55;}
+.crop::before,.crop::after{content:'';position:absolute;background:var(--cyan);}
+.crop::before{width:100%;height:1px;top:50%;left:0;}
+.crop::after{width:1px;height:100%;left:50%;top:0;}
+.crop.tl{top:14px;left:14px;}
+.crop.tr{top:14px;right:14px;}
+.crop.bl{bottom:14px;left:14px;}
+.crop.br{bottom:14px;right:14px;}
+.crop-host{position:relative;}
 
 /* ============================================================
    LOADING SCREEN
@@ -63,36 +96,27 @@ button{font-family:inherit;}
   position:fixed;inset:0;z-index:10000;
   background:var(--bg);
   display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:1.4rem;
-  transition:opacity .6s ease, visibility .6s ease;
+  gap:1.2rem;
+  transition:opacity .5s ease, visibility .5s ease;
 }
 #loader.hide{opacity:0;visibility:hidden;pointer-events:none;}
-.loader-mark{
-  font-family:'Fraunces',serif;font-weight:800;font-size:1.6rem;color:var(--white);
-  letter-spacing:-.02em;
-}
-.loader-mark span{color:var(--gold);}
-.loader-bar{width:180px;height:2px;background:var(--surface2);border-radius:2px;overflow:hidden;}
-.loader-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--gold),var(--fabric));border-radius:2px;animation:loadfill 1.3s cubic-bezier(.65,0,.35,1) forwards;}
+.loader-mark{font-family:'IBM Plex Mono',monospace;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text2);}
+.loader-mark span{color:var(--cyan);}
+.loader-bar{width:220px;height:1px;background:var(--surface2);position:relative;overflow:hidden;}
+.loader-fill{position:absolute;left:0;top:0;height:100%;width:0%;background:var(--cyan);animation:loadfill 1.3s cubic-bezier(.65,0,.35,1) forwards;box-shadow:0 0 8px var(--cyan-glow);}
 @keyframes loadfill{to{width:100%;}}
-.loader-tag{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text3);}
+.loader-tag{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text3);}
 
 /* ============================================================
-   CUSTOM CURSOR
+   CURSOR — crosshair reticle
 ============================================================ */
-#cursor{position:fixed;z-index:9999;pointer-events:none;width:7px;height:7px;border-radius:50%;background:var(--gold);transform:translate(-50%,-50%);transition:transform .15s, background .2s;}
-#cursor-ring{position:fixed;z-index:9998;pointer-events:none;width:32px;height:32px;border-radius:50%;border:1.5px solid rgba(227,177,88,.32);transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .2s;}
-#cursor.grow,#cursor-ring.grow{}
-#cursor-ring.grow{width:52px;height:52px;border-color:rgba(227,177,88,.55);}
-
-/* ============================================================
-   NOISE
-============================================================ */
-body::before{
-  content:'';position:fixed;inset:0;z-index:9997;pointer-events:none;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");
-  opacity:.5;
-}
+#cursor{position:fixed;z-index:9999;pointer-events:none;width:14px;height:14px;transform:translate(-50%,-50%);transition:transform .12s;}
+#cursor::before,#cursor::after{content:'';position:absolute;background:var(--cyan);}
+#cursor::before{width:100%;height:1px;top:50%;left:0;}
+#cursor::after{width:1px;height:100%;left:50%;top:0;}
+#cursor-ring{position:fixed;z-index:9998;pointer-events:none;width:28px;height:28px;border:1px solid rgba(125,211,252,.35);border-radius:50%;transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .2s;}
+#cursor.grow::before,#cursor.grow::after{background:var(--amber);}
+#cursor-ring.grow{width:44px;height:44px;border-color:rgba(255,157,92,.55);}
 
 /* ============================================================
    NAV
@@ -100,280 +124,276 @@ body::before{
 nav{
   position:fixed;top:0;left:0;right:0;z-index:500;
   display:flex;align-items:center;justify-content:space-between;
-  padding:0 3rem;height:66px;
-  background:rgba(5,6,10,.72);
-  backdrop-filter:blur(20px) saturate(1.5);
-  border-bottom:1px solid var(--border);
+  padding:0 3rem;height:60px;
+  background:rgba(8,18,34,.82);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line);
 }
-.nav-brand{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;letter-spacing:-.01em;color:var(--white);text-decoration:none;}
-.nav-brand span{color:var(--gold);}
+.nav-brand{font-family:'IBM Plex Mono',monospace;font-size:.85rem;font-weight:600;letter-spacing:.02em;color:var(--white);text-decoration:none;}
+.nav-brand span{color:var(--cyan);}
 .nav-center{display:flex;gap:1.9rem;}
-.nav-center a{font-size:.78rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--text2);text-decoration:none;position:relative;padding-bottom:3px;transition:color .2s;}
-.nav-center a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;background:var(--gold);transition:width .25s;}
+.nav-center a{font-family:'IBM Plex Mono',monospace;font-size:.68rem;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text2);text-decoration:none;position:relative;padding-bottom:3px;transition:color .2s;}
+.nav-center a::before{content:'';color:var(--text3);}
+.nav-center a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;background:var(--cyan);transition:width .25s;}
 .nav-center a:hover{color:var(--white);}
 .nav-center a:hover::after{width:100%;}
 .nav-right{display:flex;align-items:center;gap:.9rem;}
 .nav-status{
   display:flex;align-items:center;gap:.45rem;
-  font-size:.68rem;font-weight:600;letter-spacing:.05em;color:var(--green);
-  background:rgba(62,207,142,.08);border:1px solid rgba(62,207,142,.2);
-  border-radius:999px;padding:.36rem .8rem;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.63rem;font-weight:500;letter-spacing:.05em;color:var(--green);
+  background:rgba(110,231,183,.07);border:1px dashed rgba(110,231,183,.35);
+  padding:.32rem .7rem;
 }
 .nav-status .dot{width:5px;height:5px;border-radius:50%;background:var(--green);animation:blink 1.8s ease-in-out infinite;}
 .btn-resume{
-  font-size:.76rem;font-weight:600;letter-spacing:.04em;
-  color:var(--bg);background:var(--gold);border:none;border-radius:8px;
-  padding:.5rem 1.15rem;text-decoration:none;
-  transition:opacity .2s, transform .15s, box-shadow .2s;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.66rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--bg);background:var(--cyan);border:none;
+  padding:.48rem 1.05rem;text-decoration:none;
+  transition:opacity .2s, transform .15s;
 }
-.btn-resume:hover{opacity:.88;transform:translateY(-1px);box-shadow:0 6px 20px var(--gold-glow);}
-.nav-toggle{display:none;flex-direction:column;gap:4px;background:none;border:none;cursor:pointer;padding:.4rem;}
-.nav-toggle span{width:20px;height:1.5px;background:var(--text);}
+.btn-resume:hover{opacity:.85;transform:translateY(-1px);}
 
 /* ============================================================
-   HERO
+   SHEET LABEL (eyebrow replacement — drawing-sheet numbering)
 ============================================================ */
-.hero{min-height:100vh;display:grid;place-items:center;padding:8rem 3rem 4rem;position:relative;overflow:hidden;text-align:center;}
-.hero::after{
-  content:'';position:absolute;inset:0;z-index:0;
-  background-image:radial-gradient(rgba(255,255,255,.055) 1px, transparent 1px);
-  background-size:34px 34px;
-  mask-image:radial-gradient(ellipse 68% 58% at 50% 45%, black 15%, transparent 100%);
-  pointer-events:none;
+.sheet{
+  display:flex;align-items:center;gap:.8rem;margin-bottom:1rem;
+  font-family:'IBM Plex Mono',monospace;font-size:.65rem;font-weight:500;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--cyan);
 }
-.orb{position:absolute;border-radius:50%;filter:blur(110px);pointer-events:none;z-index:0;}
-.orb-1{width:680px;height:680px;background:radial-gradient(circle,rgba(227,177,88,.11) 0%,transparent 65%);top:-220px;left:50%;transform:translateX(-50%);animation:breatheA 11s ease-in-out infinite alternate;}
-.orb-2{width:460px;height:460px;background:radial-gradient(circle,rgba(79,168,255,.09) 0%,transparent 65%);bottom:-60px;right:6%;animation:breatheB 13s ease-in-out infinite alternate-reverse;}
-@keyframes breatheA{from{transform:translateX(-50%) scale(1);opacity:.75;}to{transform:translateX(-50%) scale(1.12);opacity:1;}}
-@keyframes breatheB{from{transform:scale(1);opacity:.65;}to{transform:scale(1.12);opacity:1;}}
+.sheet::before{content:'';width:22px;height:1px;background:var(--cyan);flex-shrink:0;}
+.sheet .no{color:var(--text3);}
 
-.hero-inner{position:relative;z-index:1;max-width:860px;margin:0 auto;}
-.hero-badges{display:flex;flex-wrap:wrap;gap:.55rem;justify-content:center;margin-bottom:2.1rem;opacity:0;animation:riseIn .6s .1s cubic-bezier(.22,1,.36,1) forwards;}
+.section-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.9rem,3.6vw,2.9rem);font-weight:700;line-height:1.15;letter-spacing:-.01em;color:var(--white);margin-bottom:1rem;}
+.section-title em{font-style:normal;color:var(--cyan);}
+.section-sub{font-size:.94rem;font-weight:300;color:var(--text2);line-height:1.75;max-width:620px;margin-bottom:3rem;}
+
+/* ============================================================
+   HERO — animated pipeline schematic
+============================================================ */
+.hero{min-height:100vh;display:flex;align-items:center;padding:7.5rem 3rem 3rem;position:relative;overflow:hidden;}
+.hero-grid{max-width:var(--maxw);margin:0 auto;width:100%;display:grid;grid-template-columns:1fr;gap:2.5rem;position:relative;z-index:1;}
+
+.hero-badges{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.7rem;opacity:0;animation:riseIn .6s .1s cubic-bezier(.22,1,.36,1) forwards;}
 .hbadge{
   display:inline-flex;align-items:center;gap:.5rem;
-  font-size:.67rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;
-  border-radius:999px;padding:.4rem 1rem;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.63rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;
+  padding:.36rem .85rem;border:1px dashed;
 }
-.hbadge.b-work{color:var(--green);background:rgba(62,207,142,.09);border:1px solid rgba(62,207,142,.22);}
-.hbadge.b-dubai{color:var(--gold);background:var(--gold-dim);border:1px solid rgba(227,177,88,.25);}
-.hbadge.b-notice{color:var(--text2);background:var(--surface);border:1px solid var(--border2);}
+.hbadge.b-work{color:var(--green);border-color:rgba(110,231,183,.4);background:rgba(110,231,183,.05);}
+.hbadge.b-dubai{color:var(--amber);border-color:rgba(255,157,92,.4);background:var(--amber-dim);}
+.hbadge.b-notice{color:var(--text2);border-color:var(--line2);background:transparent;}
 .hbadge .dot{width:5px;height:5px;border-radius:50%;background:currentColor;flex-shrink:0;}
 
 .hero-heading{
-  font-family:'Fraunces',serif;font-size:clamp(2.5rem,5.4vw,4.85rem);font-weight:900;
-  line-height:1.08;letter-spacing:-.03em;color:var(--white);margin-bottom:1.5rem;
+  font-family:'Space Grotesk',sans-serif;font-size:clamp(2.3rem,4.6vw,4rem);font-weight:700;
+  line-height:1.12;letter-spacing:-.02em;color:var(--white);margin-bottom:1.4rem;max-width:760px;
   opacity:0;animation:riseIn .75s .22s cubic-bezier(.22,1,.36,1) forwards;
 }
-.hero-heading em{font-style:italic;color:var(--gold);position:relative;}
-.hero-heading em::after{content:'';position:absolute;left:0;bottom:2px;width:100%;height:3px;background:linear-gradient(90deg,var(--gold),transparent);border-radius:2px;transform-origin:left;transform:scaleX(0);animation:underline .5s 1.05s ease forwards;}
-@keyframes underline{to{transform:scaleX(1);}}
+.hero-heading em{font-style:normal;color:var(--cyan);position:relative;}
 
-.hero-desc{font-size:1.06rem;font-weight:300;color:var(--text2);line-height:1.8;max-width:600px;margin:0 auto 2.4rem;opacity:0;animation:riseIn .75s .38s cubic-bezier(.22,1,.36,1) forwards;}
-.hero-desc strong{color:var(--text);font-weight:600;}
+.hero-desc{font-size:1.02rem;font-weight:300;color:var(--text2);line-height:1.8;max-width:600px;margin-bottom:2.2rem;opacity:0;animation:riseIn .75s .38s cubic-bezier(.22,1,.36,1) forwards;}
+.hero-desc strong{color:var(--text);font-weight:500;}
 
-.hero-btns{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap;opacity:0;animation:riseIn .75s .52s cubic-bezier(.22,1,.36,1) forwards;}
-.btn-primary{font-size:.85rem;font-weight:600;letter-spacing:.02em;color:var(--bg);background:var(--gold);border:none;border-radius:10px;padding:.85rem 2rem;text-decoration:none;transition:transform .2s,box-shadow .2s;}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 32px var(--gold-glow);}
-.btn-outline{font-size:.85rem;font-weight:500;letter-spacing:.02em;color:var(--text);background:transparent;border:1px solid var(--border2);border-radius:10px;padding:.85rem 2rem;text-decoration:none;transition:border-color .2s,color .2s,background .2s;}
-.btn-outline:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-dim);}
+.hero-btns{display:flex;gap:.8rem;flex-wrap:wrap;opacity:0;animation:riseIn .75s .52s cubic-bezier(.22,1,.36,1) forwards;}
+.btn-primary{font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--bg);background:var(--cyan);border:none;padding:.85rem 1.7rem;text-decoration:none;transition:transform .2s,box-shadow .2s;}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 26px var(--cyan-glow);}
+.btn-outline{font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--text);background:transparent;border:1px dashed var(--line2);padding:.85rem 1.7rem;text-decoration:none;transition:border-color .2s,color .2s;}
+.btn-outline:hover{border-color:var(--cyan);color:var(--cyan);}
 
-.scroll-hint{position:absolute;bottom:2.4rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);z-index:1;opacity:0;animation:riseIn .6s 1.1s ease forwards;}
-.scroll-hint-line{width:1px;height:38px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrollPulse 2s ease-in-out infinite;}
-@keyframes scrollPulse{0%,100%{opacity:.4;transform:scaleY(1);}50%{opacity:1;transform:scaleY(1.15);}}
-@keyframes riseIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+/* Pipeline schematic (SVG) */
+.hero-schematic{width:100%;opacity:0;animation:riseIn .9s .5s cubic-bezier(.22,1,.36,1) forwards;}
+.hero-schematic svg{width:100%;height:auto;overflow:visible;}
+.sch-line{fill:none;stroke:var(--line2);stroke-width:1;}
+.sch-flow{fill:none;stroke:var(--cyan);stroke-width:1.4;stroke-dasharray:6 8;animation:flow 2.2s linear infinite;}
+@keyframes flow{to{stroke-dashoffset:-140;}}
+.sch-node-box{fill:var(--surface);stroke:var(--line2);stroke-width:1;}
+.sch-node-box.active{stroke:var(--cyan);}
+.sch-label{font-family:'IBM Plex Mono',monospace;font-size:10.5px;fill:var(--text2);letter-spacing:.04em;}
+.sch-label.hl{fill:var(--cyan-soft);}
+.sch-dot{fill:var(--cyan);}
+
+@keyframes riseIn{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+
+.scroll-hint{position:absolute;bottom:1.8rem;left:3rem;display:flex;align-items:center;gap:.6rem;font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);z-index:1;}
+.scroll-hint-line{width:32px;height:1px;background:var(--cyan);animation:scrollPulse 2s ease-in-out infinite;}
+@keyframes scrollPulse{0%,100%{opacity:.35;}50%{opacity:1;}}
 
 /* ============================================================
    STATS
 ============================================================ */
-.stats-bar{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg2);display:grid;grid-template-columns:repeat(4,1fr);}
-.stat-item{padding:1.9rem 1.5rem;border-right:1px solid var(--border);text-align:center;transition:background .2s;}
+.stats-bar{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg2);display:grid;grid-template-columns:repeat(4,1fr);}
+.stat-item{padding:1.7rem 1.5rem;border-right:1px dashed var(--line);text-align:center;transition:background .2s;}
 .stat-item:last-child{border-right:none;}
-.stat-item:hover{background:var(--gold-dim);}
-.stat-num{font-family:'Fraunces',serif;font-size:2.1rem;font-weight:900;color:var(--white);line-height:1;}
-.stat-num sup{font-size:1rem;color:var(--gold);}
-.stat-label{font-size:.7rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--text2);margin-top:.5rem;}
+.stat-item:hover{background:var(--cyan-dim);}
+.stat-num{font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;color:var(--white);line-height:1;}
+.stat-num sup{font-family:'IBM Plex Mono',monospace;font-size:.85rem;color:var(--cyan);}
+.stat-label{font-family:'IBM Plex Mono',monospace;font-size:.62rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--text2);margin-top:.5rem;}
 
 /* ============================================================
    SECTION SHELLS
 ============================================================ */
-.section{padding:7rem 3rem;max-width:var(--maxw);margin:0 auto;}
-.section-full{padding:7rem 3rem;}
+.section{padding:6.5rem 3rem;max-width:var(--maxw);margin:0 auto;position:relative;}
+.section-full{padding:6.5rem 3rem;position:relative;}
 .section-full-inner{max-width:var(--maxw);margin:0 auto;}
-.tint-bg{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
-
-.eyebrow{font-size:.67rem;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.7rem;margin-bottom:.9rem;}
-.eyebrow::before{content:'';width:22px;height:1.5px;background:var(--gold);flex-shrink:0;border-radius:2px;}
-.eyebrow.fb{color:var(--fabric);}
-.eyebrow.fb::before{background:var(--fabric);}
-
-.section-title{font-family:'Fraunces',serif;font-size:clamp(1.9rem,3.8vw,3rem);font-weight:900;line-height:1.12;letter-spacing:-.02em;color:var(--white);margin-bottom:1.1rem;}
-.section-title em{font-style:italic;color:var(--gold);}
-.section-title.fb em{color:var(--fabric);}
-.section-sub{font-size:.95rem;font-weight:300;color:var(--text2);line-height:1.75;max-width:620px;margin-bottom:3rem;}
+.tint-bg{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
 
 /* ============================================================
    ABOUT
 ============================================================ */
-.about-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:5rem;align-items:start;}
-.about-body p{font-size:.97rem;font-weight:300;color:var(--text2);line-height:1.9;margin-bottom:1.1rem;}
-.about-body p strong{color:var(--text);font-weight:600;}
-.about-facts{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin-top:1.8rem;}
-.fact{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1rem 1.15rem;}
-.fact-label{font-size:.63rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:.35rem;}
-.fact-val{font-size:.86rem;font-weight:600;color:var(--text);}
-.fact-val.gold{color:var(--gold);}
+.about-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:4.5rem;align-items:start;}
+.about-body p{font-size:.95rem;font-weight:300;color:var(--text2);line-height:1.9;margin-bottom:1.1rem;}
+.about-body p strong{color:var(--text);font-weight:500;}
+.about-facts{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-top:1.8rem;background:var(--line);border:1px solid var(--line);}
+.fact{background:var(--bg);padding:1rem 1.15rem;}
+.fact-label{font-family:'IBM Plex Mono',monospace;font-size:.6rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin-bottom:.4rem;}
+.fact-val{font-size:.85rem;font-weight:500;color:var(--text);}
+.fact-val.cy{color:var(--cyan);}
 
-.skills-col{display:flex;flex-direction:column;gap:1.1rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.8rem;}
-.skills-col-title{font-size:.67rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:.4rem;}
-.skill-row{display:flex;flex-direction:column;gap:.42rem;}
-.skill-top{display:flex;justify-content:space-between;font-size:.82rem;font-weight:500;color:var(--text);}
-.skill-top span{color:var(--gold);font-weight:600;font-family:'DM Mono',monospace;font-size:.76rem;}
-.skill-bar{height:4px;background:var(--bg3);border-radius:4px;overflow:hidden;}
-.skill-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--gold),#b9863a);width:0%;transition:width 1s cubic-bezier(.22,1,.36,1);}
+.readout{border:1px solid var(--line2);background:var(--surface);padding:1.7rem;position:relative;}
+.readout-title{font-family:'IBM Plex Mono',monospace;font-size:.63rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:1.2rem;display:flex;justify-content:space-between;}
+.skill-row{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1rem;}
+.skill-row:last-child{margin-bottom:0;}
+.skill-top{display:flex;justify-content:space-between;font-size:.8rem;font-weight:400;color:var(--text);}
+.skill-top span{font-family:'IBM Plex Mono',monospace;color:var(--cyan);font-size:.73rem;}
+.skill-bar{height:3px;background:var(--bg3);position:relative;}
+.skill-bar::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(90deg, var(--line2) 0 1px, transparent 1px 10%);}
+.skill-fill{height:100%;background:var(--cyan);width:0%;transition:width 1s cubic-bezier(.22,1,.36,1);box-shadow:0 0 6px var(--cyan-glow);}
 
 /* ============================================================
    TIMELINE / EXPERIENCE
 ============================================================ */
-.timeline{position:relative;padding-left:2.4rem;}
-.timeline::before{content:'';position:absolute;left:6px;top:6px;bottom:6px;width:1px;background:linear-gradient(to bottom,var(--gold),var(--border) 90%);}
-.tl-item{position:relative;padding-bottom:2.6rem;}
-.tl-item:last-child{padding-bottom:0;}
-.tl-dot{position:absolute;left:-2.4rem;top:4px;width:13px;height:13px;border-radius:50%;background:var(--bg);border:2px solid var(--gold);}
+.timeline{position:relative;padding-left:2.2rem;border-left:1px dashed var(--line2);}
+.tl-item{position:relative;padding-bottom:0;}
+.tl-dot{position:absolute;left:-2.35rem;top:5px;width:9px;height:9px;background:var(--bg);border:1.5px solid var(--cyan);transform:rotate(45deg);}
 .tl-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:.6rem;margin-bottom:.3rem;}
-.tl-role{font-family:'Fraunces',serif;font-size:1.35rem;font-weight:700;color:var(--white);}
-.tl-date{font-size:.74rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);font-family:'DM Mono',monospace;flex-shrink:0;}
-.tl-org{font-size:.87rem;color:var(--text2);margin-bottom:1.1rem;}
-.tl-org strong{color:var(--text);font-weight:600;}
-.tl-bullets{list-style:none;display:grid;gap:.65rem;}
-.tl-bullets li{font-size:.86rem;font-weight:300;color:var(--text2);line-height:1.75;display:flex;gap:.6rem;}
-.tl-bullets li::before{content:'▸';color:var(--gold);font-size:.6rem;margin-top:.42rem;flex-shrink:0;}
+.tl-role{font-family:'Space Grotesk',sans-serif;font-size:1.25rem;font-weight:700;color:var(--white);}
+.tl-date{font-family:'IBM Plex Mono',monospace;font-size:.7rem;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--cyan);flex-shrink:0;}
+.tl-org{font-size:.85rem;color:var(--text2);margin-bottom:1.3rem;}
+.tl-org strong{color:var(--text);font-weight:500;}
+.tl-bullets{list-style:none;display:grid;gap:.7rem;}
+.tl-bullets li{font-size:.85rem;font-weight:300;color:var(--text2);line-height:1.75;display:flex;gap:.65rem;}
+.tl-bullets li::before{content:'—';color:var(--cyan);font-family:'IBM Plex Mono',monospace;flex-shrink:0;}
 
 /* ============================================================
-   SKILLS GRID (Core + Technical)
+   TECHNICAL SKILLS / STACK
 ============================================================ */
-.stack-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
-.stack-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem 1.5rem;transition:border-color .25s,transform .25s;}
-.stack-card:hover{border-color:rgba(227,177,88,.25);transform:translateY(-3px);}
-.stack-card.fb-card:hover{border-color:rgba(79,168,255,.3);}
-.stack-cat{font-size:.65rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);margin-bottom:.9rem;}
-.stack-card.fb-card .stack-cat{color:var(--fabric);}
+.stack-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+.stack-card{background:var(--bg);padding:1.5rem 1.5rem;transition:background .25s;}
+.stack-card:hover{background:var(--surface);}
+.stack-card.fb-card:hover{background:var(--amber-dim);}
+.stack-cat{font-family:'IBM Plex Mono',monospace;font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);margin-bottom:.9rem;}
+.stack-card.fb-card .stack-cat{color:var(--amber);}
 .stack-pills{display:flex;flex-wrap:wrap;gap:.4rem;}
-.spill{font-size:.75rem;font-weight:500;color:var(--text);background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:7px;padding:.32rem .75rem;transition:border-color .2s,color .2s;}
-.spill:hover{border-color:var(--gold);color:var(--gold);}
-.spill.fbp:hover{border-color:var(--fabric);color:var(--fabric);}
+.spill{font-family:'IBM Plex Mono',monospace;font-size:.7rem;font-weight:400;color:var(--text);background:var(--surface);border:1px solid var(--line2);padding:.32rem .7rem;transition:border-color .2s,color .2s;}
+.spill:hover{border-color:var(--cyan);color:var(--cyan);}
+.spill.fbp:hover{border-color:var(--amber);color:var(--amber);}
 
 /* ============================================================
    PROJECTS
 ============================================================ */
-.projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem;}
-.proj-card{background:var(--surface);border:1px solid var(--border);border-radius:18px;overflow:hidden;transition:border-color .3s,transform .3s,box-shadow .3s;display:flex;flex-direction:column;}
-.proj-card:hover{border-color:rgba(227,177,88,.22);transform:translateY(-6px);box-shadow:0 24px 60px rgba(0,0,0,.45);}
-.proj-card.fb-proj:hover{border-color:rgba(79,168,255,.28);}
+.projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+.proj-card{background:var(--bg);display:flex;flex-direction:column;position:relative;}
 .proj-shot{
-  height:170px;position:relative;overflow:hidden;
-  background:
-    linear-gradient(135deg, var(--bg3) 0%, var(--surface2) 100%);
-  border-bottom:1px solid var(--border);
+  height:150px;position:relative;overflow:hidden;
+  background:var(--surface);
+  border-bottom:1px dashed var(--line2);
   display:flex;align-items:center;justify-content:center;
 }
 .proj-shot::before{
   content:'';position:absolute;inset:0;
-  background-image:linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
-  background-size:22px 22px;
+  background-image:linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size:20px 20px;
 }
-.proj-shot-icon{font-size:2.4rem;position:relative;z-index:1;opacity:.85;}
-.proj-shot-label{position:absolute;bottom:.7rem;right:.9rem;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);font-family:'DM Mono',monospace;z-index:1;}
-.proj-header{padding:1.6rem 1.8rem 0;display:flex;align-items:flex-start;justify-content:space-between;gap:.6rem;}
-.proj-badge{font-size:.62rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--gold);background:var(--gold-dim);border:1px solid rgba(227,177,88,.22);border-radius:999px;padding:.28rem .75rem;white-space:nowrap;}
-.proj-badge.fbb{color:var(--fabric);background:var(--fabric-dim);border-color:rgba(79,168,255,.25);}
-.proj-badge.neutral{color:var(--text2);background:var(--bg3);border-color:var(--border2);}
-.proj-body{padding:1.1rem 1.8rem 1.6rem;flex:1;}
-.proj-title{font-family:'Fraunces',serif;font-size:1.28rem;font-weight:700;color:var(--white);margin-bottom:.7rem;line-height:1.3;}
-.proj-block-label{font-size:.63rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin:1rem 0 .4rem;}
+.proj-shot-icon{font-size:2rem;position:relative;z-index:1;opacity:.7;filter:grayscale(.3);}
+.proj-shot-label{position:absolute;bottom:.7rem;right:.9rem;font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);z-index:1;}
+.proj-header{padding:1.5rem 1.7rem 0;display:flex;align-items:flex-start;justify-content:space-between;gap:.6rem;}
+.proj-badge{font-family:'IBM Plex Mono',monospace;font-size:.6rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--cyan);background:var(--cyan-dim);border:1px dashed rgba(125,211,252,.4);padding:.28rem .7rem;white-space:nowrap;}
+.proj-badge.fbb{color:var(--amber);background:var(--amber-dim);border-color:rgba(255,157,92,.4);}
+.proj-badge.neutral{color:var(--text2);background:transparent;border-color:var(--line2);}
+.proj-body{padding:1.1rem 1.7rem 1.6rem;flex:1;}
+.proj-title{font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-weight:700;color:var(--white);margin-bottom:.7rem;line-height:1.3;}
+.proj-block-label{font-family:'IBM Plex Mono',monospace;font-size:.6rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin:1rem 0 .4rem;}
 .proj-block-label:first-of-type{margin-top:0;}
-.proj-desc{font-size:.85rem;font-weight:300;color:var(--text2);line-height:1.75;}
+.proj-desc{font-size:.84rem;font-weight:300;color:var(--text2);line-height:1.75;}
 .proj-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.1rem;}
-.ptag{font-size:.67rem;font-weight:600;color:var(--text2);letter-spacing:.03em;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:6px;padding:.25rem .6rem;}
-.proj-divider{height:1px;background:var(--border);margin:0 1.8rem;}
-.proj-footer{padding:1rem 1.8rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;}
-.proj-link{font-size:.76rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--gold);text-decoration:none;display:flex;align-items:center;gap:.4rem;transition:gap .2s;}
+.ptag{font-family:'IBM Plex Mono',monospace;font-size:.63rem;font-weight:500;color:var(--text2);background:transparent;border:1px solid var(--line2);padding:.24rem .55rem;}
+.proj-divider{height:1px;background:var(--line);margin:0 1.7rem;border-top:1px dashed var(--line2);}
+.proj-footer{padding:1rem 1.7rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;}
+.proj-link{font-family:'IBM Plex Mono',monospace;font-size:.72rem;font-weight:600;letter-spacing:.03em;text-transform:uppercase;color:var(--cyan);text-decoration:none;display:flex;align-items:center;gap:.4rem;transition:gap .2s;}
 .proj-link:hover{gap:.65rem;}
-.proj-scope{font-size:.68rem;color:var(--text3);font-style:italic;}
+.proj-scope{font-family:'IBM Plex Mono',monospace;font-size:.63rem;color:var(--text3);}
 
 /* ============================================================
-   FABRIC SPOTLIGHT
+   FABRIC SPOTLIGHT — the exploded schematic
 ============================================================ */
 .fabric-bg{
-  background:linear-gradient(180deg, var(--bg2) 0%, #080a14 100%);
-  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  background:var(--bg2);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
   position:relative;overflow:hidden;
 }
-.fabric-bg::before{
-  content:'';position:absolute;top:-260px;right:-160px;width:600px;height:600px;border-radius:50%;
-  background:radial-gradient(circle, rgba(79,168,255,.09) 0%, transparent 65%);
-  pointer-events:none;
-}
 .fabric-note{
-  display:flex;align-items:flex-start;gap:.7rem;
-  background:var(--fabric-dim);border:1px solid rgba(79,168,255,.22);
-  border-radius:12px;padding:.9rem 1.2rem;margin-bottom:3rem;max-width:640px;
+  display:flex;align-items:flex-start;gap:.8rem;
+  background:var(--amber-dim);border:1px dashed rgba(255,157,92,.4);
+  padding:.9rem 1.2rem;margin-bottom:3rem;max-width:660px;
 }
-.fabric-note .ico{color:var(--fabric);flex-shrink:0;font-size:1rem;}
-.fabric-note p{font-size:.83rem;color:var(--text2);line-height:1.7;}
-.fabric-note strong{color:var(--fabric);}
+.fabric-note .ico{color:var(--amber);flex-shrink:0;font-family:'IBM Plex Mono',monospace;font-size:.85rem;}
+.fabric-note p{font-size:.82rem;color:var(--text2);line-height:1.7;}
+.fabric-note strong{color:var(--amber);}
 
-.medallion{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:3rem;}
-.med-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.6rem;position:relative;overflow:hidden;}
-.med-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
-.med-card.bronze::before{background:linear-gradient(90deg,#cd7f32,#a5652080);}
-.med-card.silver::before{background:linear-gradient(90deg,#c7cdd6,#8b93a180);}
-.med-card.gold-layer::before{background:linear-gradient(90deg,var(--gold),#8a5c2280);}
-.med-tag{font-size:.63rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);margin-bottom:.6rem;}
-.med-card h4{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:700;color:var(--white);margin-bottom:.6rem;}
+.fabric-diagram{width:100%;margin-bottom:2.5rem;border:1px solid var(--line2);background:var(--bg3);padding:1.5rem;}
+.fabric-diagram svg{width:100%;height:auto;overflow:visible;}
+
+.medallion{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+.med-card{background:var(--bg);padding:1.5rem;position:relative;}
+.med-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
+.med-card.bronze::before{background:repeating-linear-gradient(90deg,#c17a3f 0 6px,transparent 6px 12px);}
+.med-card.silver::before{background:repeating-linear-gradient(90deg,#9aa7b8 0 6px,transparent 6px 12px);}
+.med-card.gold-layer::before{background:repeating-linear-gradient(90deg,var(--cyan) 0 6px,transparent 6px 12px);}
+.med-tag{font-family:'IBM Plex Mono',monospace;font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:.6rem;}
+.med-card h4{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:700;color:var(--white);margin-bottom:.6rem;}
 .med-card p{font-size:.8rem;color:var(--text2);line-height:1.7;}
-
-.fabric-flow{display:flex;align-items:center;flex-wrap:wrap;gap:.6rem;margin-bottom:1.6rem;}
-.flow-node{font-size:.76rem;font-weight:600;color:var(--text);background:var(--surface);border:1px solid var(--border2);border-radius:10px;padding:.6rem 1.1rem;white-space:nowrap;}
-.flow-arrow{color:var(--fabric);font-size:.9rem;}
 
 /* ============================================================
    GALLERY (Superset)
 ============================================================ */
-.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;}
-.gal-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:border-color .25s,transform .25s;}
-.gal-card:hover{border-color:rgba(227,177,88,.25);transform:translateY(-4px);}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+.gal-card{background:var(--bg);transition:background .25s;}
+.gal-card:hover{background:var(--surface);}
 .gal-shot{
-  height:150px;position:relative;
-  background:linear-gradient(135deg, var(--bg3), var(--surface2));
+  height:130px;position:relative;
+  background:var(--surface);
   display:flex;align-items:center;justify-content:center;
-  border-bottom:1px solid var(--border);
+  border-bottom:1px dashed var(--line2);
 }
-.gal-shot::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);background-size:18px 18px;}
-.gal-shot span{position:relative;z-index:1;font-size:1.9rem;opacity:.8;}
+.gal-shot::before{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);background-size:16px 16px;}
+.gal-shot span{position:relative;z-index:1;font-size:1.7rem;opacity:.7;}
 .gal-body{padding:1.1rem 1.3rem 1.3rem;}
-.gal-body h4{font-size:.88rem;font-weight:700;color:var(--white);margin-bottom:.4rem;}
-.gal-body p{font-size:.76rem;color:var(--text2);line-height:1.6;}
+.gal-body h4{font-family:'Space Grotesk',sans-serif;font-size:.87rem;font-weight:700;color:var(--white);margin-bottom:.4rem;}
+.gal-body p{font-size:.76rem;color:var(--text2);line-height:1.6;font-weight:300;}
 
 /* ============================================================
    DASHBOARD TABS (Power BI Gallery)
 ============================================================ */
 .dash-top{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;margin-bottom:1.8rem;}
-.dash-meta p{font-size:.88rem;font-weight:300;color:var(--text2);max-width:520px;line-height:1.75;}
-.live-chip{display:flex;align-items:center;gap:.45rem;font-size:.67rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--green);background:rgba(62,207,142,.08);border:1px solid rgba(62,207,142,.2);border-radius:999px;padding:.38rem .9rem;flex-shrink:0;}
+.dash-meta p{font-size:.87rem;font-weight:300;color:var(--text2);max-width:520px;line-height:1.75;}
+.live-chip{display:flex;align-items:center;gap:.45rem;font-family:'IBM Plex Mono',monospace;font-size:.63rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--green);background:rgba(110,231,183,.06);border:1px dashed rgba(110,231,183,.4);padding:.38rem .9rem;flex-shrink:0;}
 .live-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:blink 1.8s ease-in-out infinite;}
 @keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
 
-.dash-tabs{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.4rem;}
-.dash-tab{font-size:.77rem;font-weight:600;letter-spacing:.03em;color:var(--text2);background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:.55rem 1.15rem;transition:color .2s,border-color .2s,background .2s;}
-.dash-tab:hover{color:var(--text);border-color:var(--border2);}
-.dash-tab.active{color:var(--bg);background:var(--gold);border-color:var(--gold);}
+.dash-tabs{display:flex;gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:1.4rem;width:fit-content;}
+.dash-tab{font-family:'IBM Plex Mono',monospace;font-size:.72rem;font-weight:500;letter-spacing:.02em;color:var(--text2);background:var(--bg);border:none;padding:.6rem 1.2rem;transition:color .2s,background .2s;}
+.dash-tab:hover{color:var(--text);}
+.dash-tab.active{color:var(--bg);background:var(--cyan);}
 
-.embed-shell{border-radius:16px;overflow:hidden;border:1px solid var(--border);box-shadow:0 0 0 1px rgba(227,177,88,.04), 0 40px 80px rgba(0,0,0,.55);position:relative;background:#080a14;}
-.embed-chrome{display:flex;align-items:center;gap:.55rem;padding:.9rem 1.3rem;background:#06070d;border-bottom:1px solid var(--border);}
-.dc{width:10px;height:10px;border-radius:50%;}
-.dc-r{background:#ff5f57;}.dc-y{background:#febc2e;}.dc-g{background:#28c840;}
-.embed-url{margin-left:.6rem;font-size:.7rem;color:var(--text2);font-family:'DM Mono',monospace;letter-spacing:.02em;}
-.shimmer{position:absolute;inset:41px 0 0 0;z-index:2;pointer-events:none;background:linear-gradient(90deg,#080a14 25%,#141930 50%,#080a14 75%);background-size:200% 100%;animation:shim 1.6s infinite;transition:opacity .5s;}
+.embed-shell{border:1px solid var(--line2);position:relative;background:var(--bg3);}
+.embed-chrome{display:flex;align-items:center;gap:.55rem;padding:.8rem 1.2rem;background:var(--bg2);border-bottom:1px dashed var(--line2);}
+.dc{width:8px;height:8px;border:1px solid var(--text3);}
+.embed-url{margin-left:.6rem;font-family:'IBM Plex Mono',monospace;font-size:.68rem;color:var(--text2);letter-spacing:.02em;}
+.shimmer{position:absolute;inset:39px 0 0 0;z-index:2;pointer-events:none;background:linear-gradient(90deg,var(--bg3) 25%,var(--surface2) 50%,var(--bg3) 75%);background-size:200% 100%;animation:shim 1.6s infinite;transition:opacity .5s;}
 @keyframes shim{to{background-position:-200% 0;}}
 .embed-shell.loaded .shimmer{opacity:0;}
 .dash-panel{display:none;}
@@ -383,77 +403,77 @@ nav{
 /* ============================================================
    SQL SHOWCASE
 ============================================================ */
-.sql-wrap{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;}
-.sql-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;}
-.sql-card-head{display:flex;align-items:center;justify-content:space-between;padding:.85rem 1.3rem;background:var(--bg3);border-bottom:1px solid var(--border);}
-.sql-card-head span{font-size:.72rem;font-weight:600;color:var(--text2);font-family:'DM Mono',monospace;}
-.sql-tag{font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);background:var(--gold-dim);border:1px solid rgba(227,177,88,.2);border-radius:999px;padding:.22rem .6rem;}
-pre.sql-code{padding:1.2rem 1.3rem;overflow-x:auto;font-family:'DM Mono',monospace;font-size:.78rem;line-height:1.85;color:var(--text2);}
-.sql-code .kw{color:var(--fabric);}
-.sql-code .fn{color:var(--gold);}
+.sql-wrap{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);}
+.sql-card{background:var(--bg);overflow:hidden;}
+.sql-card-head{display:flex;align-items:center;justify-content:space-between;padding:.8rem 1.2rem;background:var(--bg2);border-bottom:1px dashed var(--line2);}
+.sql-card-head span{font-family:'IBM Plex Mono',monospace;font-size:.7rem;font-weight:500;color:var(--text2);}
+.sql-tag{font-family:'IBM Plex Mono',monospace;font-size:.6rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--cyan);background:var(--cyan-dim);border:1px dashed rgba(125,211,252,.35);padding:.2rem .55rem;}
+pre.sql-code{padding:1.2rem 1.3rem;overflow-x:auto;font-family:'IBM Plex Mono',monospace;font-size:.76rem;line-height:1.85;color:var(--text2);}
+.sql-code .kw{color:var(--amber);}
+.sql-code .fn{color:var(--cyan);}
 .sql-code .str{color:var(--green);}
 .sql-code .cm{color:var(--text3);font-style:italic;}
 
 /* ============================================================
    CERTIFICATIONS
 ============================================================ */
-.cert-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
-.cert-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem 1.3rem;text-align:center;transition:border-color .25s,transform .25s;position:relative;}
-.cert-card:hover{border-color:rgba(227,177,88,.22);transform:translateY(-4px);}
-.cert-icon{font-size:1.9rem;margin-bottom:.8rem;display:block;}
-.cert-card h4{font-size:.83rem;font-weight:600;color:var(--white);margin-bottom:.3rem;line-height:1.35;}
-.cert-card p{font-size:.71rem;font-weight:300;color:var(--text2);}
-.cert-progress{position:absolute;top:.8rem;right:.8rem;font-size:.58rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--fabric);background:var(--fabric-dim);border:1px solid rgba(79,168,255,.25);border-radius:999px;padding:.2rem .5rem;}
+.cert-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+.cert-card{background:var(--bg);padding:1.5rem 1.3rem;text-align:center;transition:background .25s;position:relative;}
+.cert-card:hover{background:var(--surface);}
+.cert-icon{font-size:1.7rem;margin-bottom:.8rem;display:block;filter:grayscale(.2);}
+.cert-card h4{font-family:'Space Grotesk',sans-serif;font-size:.82rem;font-weight:700;color:var(--white);margin-bottom:.3rem;line-height:1.35;}
+.cert-card p{font-family:'IBM Plex Mono',monospace;font-size:.66rem;font-weight:400;color:var(--text2);}
+.cert-progress{position:absolute;top:.8rem;right:.8rem;font-family:'IBM Plex Mono',monospace;font-size:.56rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--amber);background:var(--amber-dim);border:1px dashed rgba(255,157,92,.4);padding:.2rem .45rem;}
 
 /* ============================================================
    RESUME
 ============================================================ */
-.resume-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:3.5rem;align-items:center;}
-.resume-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2.2rem;}
-.resume-card h4{font-family:'Fraunces',serif;font-size:1.3rem;color:var(--white);margin-bottom:.6rem;}
-.resume-card p{font-size:.88rem;color:var(--text2);line-height:1.75;margin-bottom:1.5rem;}
+.resume-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:1px;background:var(--line);border:1px solid var(--line);align-items:stretch;}
+.resume-card{background:var(--bg);padding:2.2rem;display:flex;flex-direction:column;justify-content:center;}
+.resume-card h4{font-family:'Space Grotesk',sans-serif;font-size:1.25rem;color:var(--white);margin-bottom:.6rem;}
+.resume-card p{font-size:.86rem;color:var(--text2);line-height:1.75;margin-bottom:1.5rem;font-weight:300;}
 .resume-actions{display:flex;gap:.8rem;flex-wrap:wrap;}
-.resume-embed{border-radius:16px;overflow:hidden;border:1px solid var(--border);box-shadow:0 30px 70px rgba(0,0,0,.5);background:#0a0d18;}
+.resume-embed{background:var(--bg3);}
 .resume-embed iframe{width:100%;height:460px;border:none;display:block;}
 
 /* ============================================================
    CONTACT
 ============================================================ */
-.contact-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:5rem;align-items:start;}
-.contact-status{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:2rem;}
-.cstat{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1rem 1.1rem;}
-.cstat-label{font-size:.62rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--text3);margin-bottom:.35rem;}
-.cstat-val{font-size:.84rem;font-weight:600;color:var(--green);}
-.contact-info p{font-size:.95rem;font-weight:300;color:var(--text2);line-height:1.85;margin-bottom:2rem;}
+.contact-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:4.5rem;align-items:start;}
+.contact-status{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-bottom:2rem;background:var(--line);border:1px solid var(--line);}
+.cstat{background:var(--bg);padding:1rem 1.1rem;}
+.cstat-label{font-family:'IBM Plex Mono',monospace;font-size:.6rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--text3);margin-bottom:.35rem;}
+.cstat-val{font-size:.83rem;font-weight:500;color:var(--green);}
+.contact-info p{font-size:.94rem;font-weight:300;color:var(--text2);line-height:1.85;margin-bottom:2rem;}
 .contact-links{display:flex;flex-direction:column;}
-.clink{display:flex;align-items:center;gap:1rem;font-size:.87rem;color:var(--text2);text-decoration:none;padding:.9rem 0;border-bottom:1px solid var(--border);transition:color .2s;}
-.clink:hover{color:var(--gold);}
-.clink-ico{width:36px;height:36px;border-radius:9px;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;transition:border-color .2s;}
-.clink:hover .clink-ico{border-color:rgba(227,177,88,.3);}
+.clink{display:flex;align-items:center;gap:1rem;font-size:.86rem;color:var(--text2);text-decoration:none;padding:.9rem 0;border-bottom:1px dashed var(--line2);transition:color .2s;}
+.clink:hover{color:var(--cyan);}
+.clink-ico{width:34px;height:34px;background:var(--surface);border:1px solid var(--line2);display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0;transition:border-color .2s;}
+.clink:hover .clink-ico{border-color:var(--cyan);}
 
-.contact-form{display:flex;flex-direction:column;gap:1rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2rem;}
+.contact-form{display:flex;flex-direction:column;gap:1rem;background:var(--surface);border:1px solid var(--line2);padding:2rem;}
 .fg{display:flex;flex-direction:column;gap:.42rem;}
-.fg label{font-size:.66rem;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--text2);}
-.fg input,.fg textarea{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:.85rem 1.05rem;font-family:'DM Sans',sans-serif;font-size:.89rem;color:var(--text);outline:none;resize:vertical;transition:border-color .2s,box-shadow .2s;}
+.fg label{font-family:'IBM Plex Mono',monospace;font-size:.63rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text2);}
+.fg input,.fg textarea{background:var(--bg3);border:1px solid var(--line2);border-radius:0;padding:.85rem 1.05rem;font-family:'Inter',sans-serif;font-size:.87rem;color:var(--text);outline:none;resize:vertical;transition:border-color .2s;}
 .fg input::placeholder,.fg textarea::placeholder{color:var(--text3);}
-.fg input:focus,.fg textarea:focus{border-color:rgba(227,177,88,.45);box-shadow:0 0 0 3px rgba(227,177,88,.07);}
-.btn-send{font-size:.85rem;font-weight:600;letter-spacing:.02em;color:var(--bg);background:var(--gold);border:none;border-radius:10px;padding:.9rem 2.1rem;align-self:flex-start;transition:opacity .2s,transform .2s,box-shadow .2s;}
-.btn-send:hover{opacity:.88;transform:translateY(-2px);box-shadow:0 10px 28px var(--gold-glow);}
-.form-note{font-size:.72rem;color:var(--text3);margin-top:-.3rem;}
+.fg input:focus,.fg textarea:focus{border-color:var(--cyan);}
+.btn-send{font-family:'IBM Plex Mono',monospace;font-size:.75rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--bg);background:var(--cyan);border:none;padding:.9rem 2rem;align-self:flex-start;transition:opacity .2s,transform .2s;}
+.btn-send:hover{opacity:.85;transform:translateY(-2px);}
+.form-note{font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:var(--text3);margin-top:-.3rem;}
 
 /* ============================================================
    FOOTER
 ============================================================ */
-footer{border-top:1px solid var(--border);padding:1.6rem 3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:.75rem;color:var(--text2);}
-footer .flogo{font-family:'Fraunces',serif;font-weight:700;color:var(--white);font-size:.95rem;}
-footer .flogo span{color:var(--gold);}
+footer{border-top:1px solid var(--line);padding:1.5rem 3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:var(--text2);}
+footer .flogo{font-weight:600;color:var(--white);}
+footer .flogo span{color:var(--cyan);}
 footer a{color:var(--text2);text-decoration:none;transition:color .2s;}
-footer a:hover{color:var(--gold);}
+footer a:hover{color:var(--cyan);}
 
 /* ============================================================
    SCROLL REVEAL
 ============================================================ */
-.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s cubic-bezier(.22,1,.36,1);}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s,transform .7s cubic-bezier(.22,1,.36,1);}
 .reveal.visible{opacity:1;transform:translateY(0);}
 .reveal-d1{transition-delay:.08s;}
 .reveal-d2{transition-delay:.16s;}
@@ -463,7 +483,7 @@ footer a:hover{color:var(--gold);}
    ACCESSIBILITY
 ============================================================ */
 a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
-  outline:2px solid var(--gold); outline-offset:3px; border-radius:4px;
+  outline:1px solid var(--cyan); outline-offset:3px;
 }
 @media (prefers-reduced-motion: reduce){
   *{animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; scroll-behavior:auto !important;}
@@ -477,17 +497,17 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .cert-grid{grid-template-columns:repeat(2,1fr);}
   .gallery-grid{grid-template-columns:repeat(2,1fr);}
   .medallion{grid-template-columns:1fr;}
-  .resume-grid{grid-template-columns:1fr;gap:2rem;}
+  .resume-grid{grid-template-columns:1fr;}
 }
 @media (max-width:768px){
   nav{padding:0 1.2rem;}
   .nav-center{display:none;}
   .nav-status{display:none;}
-  .hero{padding:6.5rem 1.3rem 3rem;}
-  .section,.section-full{padding:4.5rem 1.3rem;}
+  .hero{padding:6rem 1.3rem 3rem;}
+  .section,.section-full{padding:4rem 1.3rem;}
   .stats-bar{grid-template-columns:repeat(2,1fr);}
-  .stat-item{border-right:none;border-bottom:1px solid var(--border);}
-  .stat-item:nth-child(odd){border-right:1px solid var(--border);}
+  .stat-item{border-right:none;border-bottom:1px dashed var(--line);}
+  .stat-item:nth-child(odd){border-right:1px dashed var(--line);}
   .about-grid,.contact-grid,.resume-grid{grid-template-columns:1fr;gap:2.5rem;}
   .about-facts,.contact-status{grid-template-columns:1fr 1fr;}
   .projects-grid,.stack-grid,.sql-wrap{grid-template-columns:1fr;}
@@ -495,14 +515,15 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .cert-grid{grid-template-columns:1fr 1fr;}
   footer{flex-direction:column;text-align:center;}
   .dash-panel iframe{height:340px;}
-  .timeline{padding-left:1.8rem;}
-  .tl-dot{left:-1.8rem;}
+  .timeline{padding-left:1.6rem;}
+  .tl-dot{left:-1.75rem;}
   body{cursor:auto;}
   #cursor,#cursor-ring{display:none;}
+  .scroll-hint{left:1.3rem;}
 }
 @media (max-width:480px){
   .cert-grid,.gallery-grid{grid-template-columns:1fr;}
-  .hero-heading{font-size:2.1rem;}
+  .hero-heading{font-size:2rem;}
   .about-facts,.contact-status{grid-template-columns:1fr;}
 }
 </style>
@@ -511,9 +532,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 <!-- LOADING SCREEN -->
 <div id="loader">
-  <div class="loader-mark">Abdul<span>.</span>Basith</div>
+  <div class="loader-mark">ABDUL<span>.</span>BASITH — INITIALIZING SCHEMATIC</div>
   <div class="loader-bar"><div class="loader-fill"></div></div>
-  <div class="loader-tag">Data Analyst · Microsoft Fabric</div>
+  <div class="loader-tag">SHEET 00 / DATA ANALYST · MICROSOFT FABRIC</div>
 </div>
 
 <div id="cursor"></div>
@@ -521,53 +542,93 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 <!-- ══════════════ NAV ══════════════ -->
 <nav>
-  <a href="#top" class="nav-brand">Abdul<span>.</span>Basith</a>
+  <a href="#top" class="nav-brand">ABDUL<span>.</span>BASITH</a>
   <div class="nav-center">
-    <a href="#about">About</a>
-    <a href="#experience">Experience</a>
-    <a href="#projects">Projects</a>
-    <a href="#fabric">Fabric</a>
-    <a href="#dashboards">Dashboards</a>
-    <a href="#contact">Contact</a>
+    <a href="#about">01 About</a>
+    <a href="#experience">02 Experience</a>
+    <a href="#projects">03 Projects</a>
+    <a href="#fabric">04 Fabric</a>
+    <a href="#dashboards">05 Dashboards</a>
+    <a href="#contact">06 Contact</a>
   </div>
   <div class="nav-right">
-    <span class="nav-status"><span class="dot"></span>Open to Work</span>
+    <span class="nav-status"><span class="dot"></span>OPEN TO WORK</span>
     <a href="#resume" class="btn-resume">Resume</a>
   </div>
 </nav>
 
+<main>
 <!-- ══════════════ HERO ══════════════ -->
 <section class="hero" id="top">
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
+  <div class="crop tl"></div><div class="crop tr"></div><div class="crop bl"></div><div class="crop br"></div>
+  <div class="hero-grid">
+    <div>
+      <div class="hero-badges">
+        <span class="hbadge b-work"><span class="dot"></span>Open to Work</span>
+        <span class="hbadge b-dubai"><span class="dot"></span>Open to Relocate — Dubai, UAE</span>
+        <span class="hbadge b-notice"><span class="dot"></span>Available Immediately After Notice Period</span>
+      </div>
 
-  <div class="hero-inner">
-    <div class="hero-badges">
-      <span class="hbadge b-work"><span class="dot"></span>Open to Work</span>
-      <span class="hbadge b-dubai"><span class="dot"></span>Open to Relocate — Dubai, UAE</span>
-      <span class="hbadge b-notice"><span class="dot"></span>Available Immediately After Notice Period</span>
+      <h1 class="hero-heading">
+        I build the pipeline between <em>raw data</em> and decisions people trust
+      </h1>
+
+      <p class="hero-desc">
+        Data Analyst with <strong>1.6+ years</strong> of production experience in SQL analytics,
+        Power BI &amp; Apache Superset dashboards, and Python-driven data quality automation —
+        with hands-on <strong>Microsoft Fabric</strong> projects on the side.
+      </p>
+
+      <div class="hero-btns">
+        <a href="#projects" class="btn-primary">View Projects</a>
+        <a href="#resume" class="btn-outline">Download Resume ↓</a>
+      </div>
     </div>
 
-    <h1 class="hero-heading">
-      I turn raw data into<br/>
-      <em>clear, trusted</em> reporting<br/>
-      teams act on
-    </h1>
+    <!-- Animated pipeline schematic -->
+    <div class="hero-schematic">
+      <svg viewBox="0 0 980 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Data pipeline diagram: source data through OneLake, Data Factory, Lakehouse, to Power BI">
+        <!-- connecting base lines -->
+        <path class="sch-line" d="M110,85 H210" />
+        <path class="sch-line" d="M330,85 H430" />
+        <path class="sch-line" d="M550,85 H650" />
+        <path class="sch-line" d="M770,85 H870" />
+        <!-- animated flow overlay -->
+        <path class="sch-flow" d="M110,85 H210" />
+        <path class="sch-flow" d="M330,85 H430" />
+        <path class="sch-flow" d="M550,85 H650" />
+        <path class="sch-flow" d="M770,85 H870" />
 
-    <p class="hero-desc">
-      Data Analyst with <strong>1.6+ years</strong> of production experience in SQL analytics,
-      Power BI &amp; Apache Superset dashboards, and Python-driven data quality automation —
-      with hands-on <strong>Microsoft Fabric</strong> projects on the side.
-    </p>
+        <!-- nodes -->
+        <rect class="sch-node-box" x="10" y="55" width="100" height="60" />
+        <text class="sch-label hl" x="60" y="83" text-anchor="middle">SOURCE</text>
+        <text class="sch-label" x="60" y="99" text-anchor="middle">SQL / MySQL</text>
 
-    <div class="hero-btns">
-      <a href="#projects" class="btn-primary">View My Work</a>
-      <a href="#resume" class="btn-outline">Download Resume ↓</a>
+        <rect class="sch-node-box active" x="210" y="55" width="120" height="60" />
+        <text class="sch-label hl" x="270" y="83" text-anchor="middle">ONELAKE</text>
+        <text class="sch-label" x="270" y="99" text-anchor="middle">Fabric Ingestion</text>
+
+        <rect class="sch-node-box" x="430" y="55" width="120" height="60" />
+        <text class="sch-label hl" x="490" y="83" text-anchor="middle">DATA FACTORY</text>
+        <text class="sch-label" x="490" y="99" text-anchor="middle">ETL Pipelines</text>
+
+        <rect class="sch-node-box active" x="650" y="55" width="120" height="60" />
+        <text class="sch-label hl" x="710" y="76" text-anchor="middle">LAKEHOUSE</text>
+        <text class="sch-label" x="710" y="92" text-anchor="middle">Bronze·Silver·Gold</text>
+        <text class="sch-label" x="710" y="105" text-anchor="middle">Star Schema</text>
+
+        <rect class="sch-node-box" x="870" y="55" width="100" height="60" />
+        <text class="sch-label hl" x="920" y="83" text-anchor="middle">POWER BI</text>
+        <text class="sch-label" x="920" y="99" text-anchor="middle">Reporting</text>
+
+        <circle class="sch-dot" cx="110" cy="85" r="2.5" />
+        <circle class="sch-dot" cx="870" cy="85" r="2.5" />
+      </svg>
     </div>
   </div>
 
   <div class="scroll-hint">
-    <span>Scroll</span>
+    <span>SCROLL — SHEET 01</span>
     <div class="scroll-hint-line"></div>
   </div>
 </section>
@@ -575,7 +636,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 <!-- ══════════════ STATS ══════════════ -->
 <div class="stats-bar">
   <div class="stat-item reveal">
-    <div class="stat-num">1.6<sup>yrs</sup></div>
+    <div class="stat-num">1.6<sup>YRS</sup></div>
     <div class="stat-label">Data Analyst Experience</div>
   </div>
   <div class="stat-item reveal reveal-d1">
@@ -587,47 +648,46 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     <div class="stat-label">Business Domains Unified</div>
   </div>
   <div class="stat-item reveal reveal-d3">
-    <div class="stat-num" style="font-size:1.35rem;letter-spacing:-.01em;">Fabric</div>
+    <div class="stat-num" style="font-size:1.3rem;">FABRIC</div>
     <div class="stat-label">Hands-on Portfolio Projects</div>
   </div>
 </div>
 
 <!-- ══════════════ ABOUT ══════════════ -->
 <div class="tint-bg" id="about">
-  <div class="section">
+  <div class="section crop-host">
+    <div class="crop tl"></div><div class="crop tr"></div>
+    <div class="sheet reveal"><span class="no">SHEET 01</span> / ABOUT</div>
+    <h2 class="section-title reveal">Grounded in SQL, <em>built for reporting people trust</em></h2>
+
     <div class="about-grid">
-      <div>
-        <p class="eyebrow reveal">About Me</p>
-        <h2 class="section-title reveal">Grounded in SQL,<br/><em>built for reporting people trust</em></h2>
+      <div class="about-body reveal">
+        <p>
+          I'm <strong>Abdul Basith</strong>, a Data Analyst based in Chennai, India, currently working at
+          <strong>Anubavam Technologies Pvt Ltd</strong>. Over the past 1.6 years I've built SQL-driven
+          reporting datasets, automated data quality checks in Python, and delivered dashboards in
+          <strong>Power BI</strong> and <strong>Apache Superset</strong> that business teams rely on daily.
+        </p>
+        <p>
+          Day to day, that means writing optimized SQL against production tables, reconciling source-to-target
+          data, and translating messy stakeholder asks into KPI definitions that actually hold up.
+        </p>
+        <p>
+          Outside of work, I've been building hands-on <strong>Microsoft Fabric</strong> projects — OneLake,
+          Data Factory, and Lakehouse — to go deeper into modern data platform engineering. I'm now looking to
+          bring that combination of production analytics experience and Fabric skills to a data team in Dubai.
+        </p>
 
-        <div class="about-body reveal">
-          <p>
-            I'm <strong>Abdul Basith</strong>, a Data Analyst based in Chennai, India, currently working at
-            <strong>Anubavam Technologies Pvt Ltd</strong>. Over the past 1.6 years I've built SQL-driven
-            reporting datasets, automated data quality checks in Python, and delivered dashboards in
-            <strong>Power BI</strong> and <strong>Apache Superset</strong> that business teams rely on daily.
-          </p>
-          <p>
-            Day to day, that means writing optimized SQL against production tables, reconciling source-to-target
-            data, and translating messy stakeholder asks into KPI definitions that actually hold up.
-          </p>
-          <p>
-            Outside of work, I've been building hands-on <strong>Microsoft Fabric</strong> projects — OneLake,
-            Data Factory, and Lakehouse — to go deeper into modern data platform engineering. I'm now looking to
-            bring that combination of production analytics experience and Fabric skills to a data team in Dubai.
-          </p>
-
-          <div class="about-facts">
-            <div class="fact"><div class="fact-label">Current Role</div><div class="fact-val">Data Analyst, Anubavam Technologies</div></div>
-            <div class="fact"><div class="fact-label">Based In</div><div class="fact-val">Chennai, India</div></div>
-            <div class="fact"><div class="fact-label">Target Location</div><div class="fact-val gold">Dubai, UAE</div></div>
-            <div class="fact"><div class="fact-label">Status</div><div class="fact-val">Open to Work</div></div>
-          </div>
+        <div class="about-facts">
+          <div class="fact"><div class="fact-label">Current Role</div><div class="fact-val">Data Analyst, Anubavam Technologies</div></div>
+          <div class="fact"><div class="fact-label">Based In</div><div class="fact-val">Chennai, India</div></div>
+          <div class="fact"><div class="fact-label">Target Location</div><div class="fact-val cy">Dubai, UAE</div></div>
+          <div class="fact"><div class="fact-label">Status</div><div class="fact-val">Open to Work</div></div>
         </div>
       </div>
 
-      <div class="skills-col reveal">
-        <div class="skills-col-title">Core Skills</div>
+      <div class="readout reveal">
+        <div class="readout-title"><span>SKILL READOUT</span><span>LOG.01</span></div>
         <div class="skill-row"><div class="skill-top"><span>SQL Analytics</span><span data-w="88">0%</span></div><div class="skill-bar"><div class="skill-fill" data-fill="88"></div></div></div>
         <div class="skill-row"><div class="skill-top"><span>Power BI &amp; DAX</span><span data-w="82">0%</span></div><div class="skill-bar"><div class="skill-fill" data-fill="82"></div></div></div>
         <div class="skill-row"><div class="skill-top"><span>Apache Superset</span><span data-w="84">0%</span></div><div class="skill-bar"><div class="skill-fill" data-fill="84"></div></div></div>
@@ -640,9 +700,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 </div>
 
 <!-- ══════════════ PROFESSIONAL EXPERIENCE ══════════════ -->
-<div class="section-full" id="experience">
+<div class="section-full crop-host" id="experience">
+  <div class="crop tl"></div><div class="crop tr"></div>
   <div class="section-full-inner">
-    <p class="eyebrow reveal">Professional Experience</p>
+    <div class="sheet reveal"><span class="no">SHEET 02</span> / EXPERIENCE</div>
     <h2 class="section-title reveal">Where the <em>work</em> happened</h2>
     <p class="section-sub reveal">One role, real production ownership — from raw ingestion to dashboards stakeholders check every week.</p>
 
@@ -673,8 +734,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 <!-- ══════════════ TECHNICAL SKILLS ══════════════ -->
 <div class="tint-bg">
-  <div class="section">
-    <p class="eyebrow reveal">Technical Skills</p>
+  <div class="section crop-host">
+    <div class="crop tl"></div><div class="crop tr"></div>
+    <div class="sheet reveal"><span class="no">SHEET 03</span> / TECHNICAL SKILLS</div>
     <h2 class="section-title reveal">Tools I <em>actually use</em></h2>
     <p class="section-sub reveal">Grouped by how they show up in my day-to-day work — no framework name-dropping.</p>
 
@@ -742,140 +804,96 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 </div>
 
 <!-- ══════════════ PROJECTS ══════════════ -->
-<div id="projects">
+<div id="projects" class="crop-host" style="position:relative;">
   <div class="section">
-    <p class="eyebrow reveal">Portfolio</p>
+    <div class="crop tl"></div><div class="crop tr"></div>
+    <div class="sheet reveal"><span class="no">SHEET 04</span> / PROJECTS</div>
     <h2 class="section-title reveal">Featured <em>Projects</em></h2>
     <p class="section-sub reveal">A mix of production work at Anubavam and independent projects I built to go deeper on Microsoft Fabric, Superset, and Power BI.</p>
 
     <div class="projects-grid">
 
       <!-- Project 1: Fabric Airbnb -->
-      <div class="proj-card fb-proj reveal">
-        <div class="proj-shot"><span class="proj-shot-icon">🏡</span><span class="proj-shot-label">Screenshot Preview</span></div>
-        <div class="proj-header">
-          <span class="proj-badge fbb">Microsoft Fabric · Portfolio Project</span>
-        </div>
+      <div class="proj-card reveal">
+        <div class="proj-shot"><span class="proj-shot-icon">◧</span><span class="proj-shot-label">SCREENSHOT PENDING</span></div>
+        <div class="proj-header"><span class="proj-badge fbb">Microsoft Fabric · Portfolio Project</span></div>
         <div class="proj-body">
           <h3 class="proj-title">Fabric Airbnb Analytics Platform</h3>
-
           <div class="proj-block-label">Problem</div>
           <p class="proj-desc">Airbnb listing &amp; booking data needed a structured, queryable platform to analyze pricing, occupancy and revenue trends — built independently to learn Fabric's Lakehouse architecture.</p>
-
           <div class="proj-block-label">Architecture</div>
           <p class="proj-desc">Ingested raw data into OneLake via Data Factory pipelines, transformed across Bronze → Silver → Gold Lakehouse layers, modeled as a Star Schema, then reported on in Power BI.</p>
-
           <div class="proj-block-label">Business Impact</div>
           <p class="proj-desc">Self-directed project — no production business impact. Demonstrates working knowledge of Fabric ingestion, medallion modeling, and semantic-layer reporting.</p>
-
-          <div class="proj-tags">
-            <span class="ptag">Microsoft Fabric</span>
-            <span class="ptag">OneLake</span>
-            <span class="ptag">Data Factory</span>
-            <span class="ptag">Lakehouse</span>
-            <span class="ptag">SQL</span>
-            <span class="ptag">Power BI</span>
-          </div>
+          <div class="proj-tags"><span class="ptag">Microsoft Fabric</span><span class="ptag">OneLake</span><span class="ptag">Data Factory</span><span class="ptag">Lakehouse</span><span class="ptag">SQL</span><span class="ptag">Power BI</span></div>
         </div>
         <div class="proj-divider"></div>
         <div class="proj-footer">
-          <a href="https://github.com/basith113" target="_blank" rel="noopener" class="proj-link">View on GitHub <span>→</span></a>
-          <span class="proj-scope">Personal project</span>
+          <a href="https://github.com/basith113" target="_blank" rel="noopener" class="proj-link">View on GitHub →</a>
+          <span class="proj-scope">PERSONAL PROJECT</span>
         </div>
       </div>
 
-      <!-- Project 2: EdTech DataHub case study -->
+      <!-- Project 2: EdTech DataHub -->
       <div class="proj-card reveal reveal-d1">
-        <div class="proj-shot"><span class="proj-shot-icon">🎓</span><span class="proj-shot-label">Screenshot Preview</span></div>
-        <div class="proj-header">
-          <span class="proj-badge neutral">Professional Case Study</span>
-        </div>
+        <div class="proj-shot"><span class="proj-shot-icon">◧</span><span class="proj-shot-label">SCREENSHOT PENDING</span></div>
+        <div class="proj-header"><span class="proj-badge neutral">Professional Case Study</span></div>
         <div class="proj-body">
           <h3 class="proj-title">EdTech Reporting DataHub</h3>
-
           <div class="proj-block-label">Problem</div>
           <p class="proj-desc">Admissions, Enrollment, Faculty and Financial data lived in disconnected sources, making cross-domain reporting slow and error-prone for stakeholders.</p>
-
           <div class="proj-block-label">Architecture</div>
           <p class="proj-desc">Built SQL-driven data marts and a centralized DataHub layer unifying 7 domains, with Python components handling extraction, validation and incremental loads.</p>
-
           <div class="proj-block-label">Business Impact</div>
           <p class="proj-desc">Cut manual reporting effort by ~3–4 hours/week and became the source for 10+ Power BI &amp; Superset dashboards used by cross-functional teams.</p>
-
-          <div class="proj-tags">
-            <span class="ptag">SQL</span>
-            <span class="ptag">Python</span>
-            <span class="ptag">Power BI</span>
-            <span class="ptag">Apache Superset</span>
-          </div>
+          <div class="proj-tags"><span class="ptag">SQL</span><span class="ptag">Python</span><span class="ptag">Power BI</span><span class="ptag">Apache Superset</span></div>
         </div>
         <div class="proj-divider"></div>
         <div class="proj-footer">
-          <span class="proj-link" style="color:var(--text3);cursor:default;">Internal — Anubavam Technologies</span>
-          <span class="proj-scope">Production work</span>
+          <span class="proj-link" style="color:var(--text3);">Internal — Anubavam Technologies</span>
+          <span class="proj-scope">PRODUCTION WORK</span>
         </div>
       </div>
 
-      <!-- Project 3: Sales Analytics (Superset) -->
+      <!-- Project 3: Sales Analytics -->
       <div class="proj-card reveal reveal-d2">
-        <div class="proj-shot"><span class="proj-shot-icon">📊</span><span class="proj-shot-label">Screenshot Preview</span></div>
-        <div class="proj-header">
-          <span class="proj-badge neutral">Apache Superset · Personal Project</span>
-        </div>
+        <div class="proj-shot"><span class="proj-shot-icon">◧</span><span class="proj-shot-label">SCREENSHOT PENDING</span></div>
+        <div class="proj-header"><span class="proj-badge neutral">Apache Superset · Personal Project</span></div>
         <div class="proj-body">
           <h3 class="proj-title">Sales Analytics Dashboard</h3>
-
           <div class="proj-block-label">Problem</div>
           <p class="proj-desc">Practiced building a self-service sales reporting layer on top of a MySQL sample dataset — revenue by region, product and rep performance.</p>
-
           <div class="proj-block-label">Architecture</div>
           <p class="proj-desc">SQL views over MySQL for revenue, order and customer tables, visualized in Apache Superset with drill-downs and filters; light Python scripts for data cleanup.</p>
-
           <div class="proj-block-label">Business Impact</div>
           <p class="proj-desc">Practice project used to sharpen Superset chart design and SQL aggregation patterns — not tied to a production business outcome.</p>
-
-          <div class="proj-tags">
-            <span class="ptag">Apache Superset</span>
-            <span class="ptag">SQL</span>
-            <span class="ptag">MySQL</span>
-            <span class="ptag">Python</span>
-          </div>
+          <div class="proj-tags"><span class="ptag">Apache Superset</span><span class="ptag">SQL</span><span class="ptag">MySQL</span><span class="ptag">Python</span></div>
         </div>
         <div class="proj-divider"></div>
         <div class="proj-footer">
-          <a href="https://github.com/basith113" target="_blank" rel="noopener" class="proj-link">View on GitHub <span>→</span></a>
-          <span class="proj-scope">Personal project</span>
+          <a href="https://github.com/basith113" target="_blank" rel="noopener" class="proj-link">View on GitHub →</a>
+          <span class="proj-scope">PERSONAL PROJECT</span>
         </div>
       </div>
 
-      <!-- Project 4: Hospital Analytics (Power BI) -->
+      <!-- Project 4: Hospital Analytics -->
       <div class="proj-card reveal reveal-d3">
-        <div class="proj-shot"><span class="proj-shot-icon">🏥</span><span class="proj-shot-label">Screenshot Preview</span></div>
-        <div class="proj-header">
-          <span class="proj-badge neutral">Power BI · Personal Project</span>
-        </div>
+        <div class="proj-shot"><span class="proj-shot-icon">◧</span><span class="proj-shot-label">SCREENSHOT PENDING</span></div>
+        <div class="proj-header"><span class="proj-badge neutral">Power BI · Personal Project</span></div>
         <div class="proj-body">
           <h3 class="proj-title">Hospital Analytics Dashboard</h3>
-
           <div class="proj-block-label">Problem</div>
           <p class="proj-desc">Built a Power BI report over a public hospital operations dataset to practice patient-flow and department KPI reporting patterns.</p>
-
           <div class="proj-block-label">Architecture</div>
           <p class="proj-desc">SQL staging queries feeding a star-schema Power BI model, with DAX measures for admissions, average stay, and department load, plus slicers for time-based filtering.</p>
-
           <div class="proj-block-label">Business Impact</div>
           <p class="proj-desc">Practice project focused on DAX and dashboard UX — included here to show range beyond my day-to-day domain.</p>
-
-          <div class="proj-tags">
-            <span class="ptag">Power BI</span>
-            <span class="ptag">DAX</span>
-            <span class="ptag">SQL</span>
-          </div>
+          <div class="proj-tags"><span class="ptag">Power BI</span><span class="ptag">DAX</span><span class="ptag">SQL</span></div>
         </div>
         <div class="proj-divider"></div>
         <div class="proj-footer">
-          <a href="https://github.com/basith113" target="_blank" rel="noopener" class="proj-link">View on GitHub <span>→</span></a>
-          <span class="proj-scope">Personal project</span>
+          <a href="https://github.com/basith113" target="_blank" rel="noopener" class="proj-link">View on GitHub →</a>
+          <span class="proj-scope">PERSONAL PROJECT</span>
         </div>
       </div>
 
@@ -884,48 +902,74 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 </div>
 
 <!-- ══════════════ MICROSOFT FABRIC SPOTLIGHT ══════════════ -->
-<div class="fabric-bg" id="fabric">
+<div class="fabric-bg crop-host" id="fabric">
+  <div class="crop tl"></div><div class="crop tr"></div><div class="crop bl"></div><div class="crop br"></div>
   <div class="section">
-    <p class="eyebrow fb reveal">Microsoft Fabric</p>
-    <h2 class="section-title fb reveal">Going deeper on <em>Fabric</em></h2>
+    <div class="sheet reveal"><span class="no">SHEET 05</span> / MICROSOFT FABRIC</div>
+    <h2 class="section-title reveal">Going deeper on <em>Fabric</em></h2>
     <p class="section-sub reveal">Fabric isn't part of my production stack yet — it's where I've been investing my own time to build modern Lakehouse skills ahead of a platform move.</p>
 
     <div class="fabric-note reveal">
-      <span class="ico">ⓘ</span>
+      <span class="ico">[!]</span>
       <p><strong>Transparency note:</strong> everything below is a self-directed portfolio project built to learn Fabric, not production work at my current employer.</p>
     </div>
 
-    <div class="fabric-flow reveal">
-      <span class="flow-node">Airbnb Raw Data</span>
-      <span class="flow-arrow">→</span>
-      <span class="flow-node">OneLake</span>
-      <span class="flow-arrow">→</span>
-      <span class="flow-node">Data Factory Pipeline</span>
-      <span class="flow-arrow">→</span>
-      <span class="flow-node">Lakehouse</span>
-      <span class="flow-arrow">→</span>
-      <span class="flow-node">Power BI Report</span>
+    <div class="fabric-diagram reveal">
+      <svg viewBox="0 0 1000 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Exploded Fabric medallion architecture diagram">
+        <path class="sch-line" d="M120,110 H240" /><path class="sch-flow" d="M120,110 H240" />
+        <path class="sch-line" d="M120,110 V60 H300" /><path class="sch-flow" d="M120,110 V60 H300" />
+        <path class="sch-line" d="M120,110 V160 H300" /><path class="sch-flow" d="M120,110 V160 H300" />
+        <path class="sch-line" d="M420,60 H500 V110" /><path class="sch-flow" d="M420,60 H500 V110" />
+        <path class="sch-line" d="M420,110 H500" /><path class="sch-flow" d="M420,110 H500" />
+        <path class="sch-line" d="M420,160 H500 V110" /><path class="sch-flow" d="M420,160 H500 V110" />
+        <path class="sch-line" d="M620,110 H740" /><path class="sch-flow" d="M620,110 H740" />
+        <path class="sch-line" d="M840,110 H900" /><path class="sch-flow" d="M840,110 H900" />
+
+        <rect class="sch-node-box" x="30" y="80" width="90" height="60" />
+        <text class="sch-label hl" x="75" y="106" text-anchor="middle">RAW DATA</text>
+        <text class="sch-label" x="75" y="122" text-anchor="middle">Airbnb JSON</text>
+
+        <rect class="sch-node-box active" x="300" y="30" width="120" height="55" />
+        <text class="sch-label hl" x="360" y="55" text-anchor="middle">BRONZE</text>
+        <text class="sch-label" x="360" y="70" text-anchor="middle">Raw Ingestion</text>
+
+        <rect class="sch-node-box active" x="300" y="132" width="120" height="55" />
+        <text class="sch-label hl" x="360" y="157" text-anchor="middle">SILVER</text>
+        <text class="sch-label" x="360" y="172" text-anchor="middle">Cleaned &amp; Typed</text>
+
+        <rect class="sch-node-box active" x="500" y="82" width="120" height="55" />
+        <text class="sch-label hl" x="560" y="105" text-anchor="middle">GOLD</text>
+        <text class="sch-label" x="560" y="120" text-anchor="middle">Star Schema</text>
+
+        <rect class="sch-node-box" x="740" y="80" width="100" height="60" />
+        <text class="sch-label hl" x="790" y="105" text-anchor="middle">LAKEHOUSE</text>
+        <text class="sch-label" x="790" y="121" text-anchor="middle">SQL Endpoint</text>
+
+        <rect class="sch-node-box" x="900" y="80" width="80" height="60" />
+        <text class="sch-label hl" x="940" y="106" text-anchor="middle">POWER</text>
+        <text class="sch-label" x="940" y="122" text-anchor="middle">BI</text>
+      </svg>
     </div>
 
-    <div class="medallion">
-      <div class="med-card bronze reveal">
+    <div class="medallion reveal">
+      <div class="med-card bronze">
         <div class="med-tag">Bronze Layer</div>
         <h4>Raw Ingestion</h4>
         <p>Landing zone for raw Airbnb listing, calendar and review data pulled straight from source, untouched.</p>
       </div>
-      <div class="med-card silver reveal reveal-d1">
+      <div class="med-card silver">
         <div class="med-tag">Silver Layer</div>
         <h4>Cleaned &amp; Conformed</h4>
         <p>Deduplicated, typed and standardized tables with surrogate keys ready for modeling.</p>
       </div>
-      <div class="med-card gold-layer reveal reveal-d2">
+      <div class="med-card gold-layer">
         <div class="med-tag">Gold Layer</div>
         <h4>Star Schema for Reporting</h4>
         <p>Fact and dimension tables — pricing, occupancy, revenue — served directly to Power BI.</p>
       </div>
     </div>
 
-    <div class="stack-pills reveal">
+    <div class="stack-pills reveal" style="margin-top:2rem;">
       <span class="spill fbp">Microsoft Fabric</span>
       <span class="spill fbp">OneLake</span>
       <span class="spill fbp">Data Factory</span>
@@ -938,62 +982,44 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 </div>
 
 <!-- ══════════════ SUPERSET GALLERY ══════════════ -->
-<div class="section">
-  <p class="eyebrow reveal">Apache Superset</p>
+<div class="section crop-host">
+  <div class="crop tl"></div><div class="crop tr"></div>
+  <div class="sheet reveal"><span class="no">SHEET 06</span> / APACHE SUPERSET</div>
   <h2 class="section-title reveal">Superset <em>Gallery</em></h2>
   <p class="section-sub reveal">A sample of the 10+ Superset dashboards I've built at Anubavam for KPI tracking and business reporting.</p>
 
   <div class="gallery-grid">
-    <div class="gal-card reveal">
-      <div class="gal-shot"><span>📈</span></div>
-      <div class="gal-body"><h4>Enrollment KPI Tracker</h4><p>Cohort-level enrollment trends with drill-down by term and department.</p></div>
-    </div>
-    <div class="gal-card reveal reveal-d1">
-      <div class="gal-shot"><span>💳</span></div>
-      <div class="gal-body"><h4>Financial Reconciliation View</h4><p>Source-to-target reconciliation status across fee and payment tables.</p></div>
-    </div>
-    <div class="gal-card reveal reveal-d2">
-      <div class="gal-shot"><span>👥</span></div>
-      <div class="gal-body"><h4>Faculty Workload Dashboard</h4><p>Faculty allocation and course-load visibility for academic planning.</p></div>
-    </div>
-    <div class="gal-card reveal">
-      <div class="gal-shot"><span>🧾</span></div>
-      <div class="gal-body"><h4>Customer Statement Monitor</h4><p>Statement generation status and exception tracking, updated daily.</p></div>
-    </div>
-    <div class="gal-card reveal reveal-d1">
-      <div class="gal-shot"><span>🗂️</span></div>
-      <div class="gal-body"><h4>Data Quality Scorecard</h4><p>Null, duplicate and schema-consistency checks across DataHub tables.</p></div>
-    </div>
-    <div class="gal-card reveal reveal-d2">
-      <div class="gal-shot"><span>⚙️</span></div>
-      <div class="gal-body"><h4>ETL Audit &amp; Load Summary</h4><p>Pipeline run status, row counts and load timing for operational visibility.</p></div>
-    </div>
+    <div class="gal-card reveal"><div class="gal-shot"><span>◪</span></div><div class="gal-body"><h4>Enrollment KPI Tracker</h4><p>Cohort-level enrollment trends with drill-down by term and department.</p></div></div>
+    <div class="gal-card reveal reveal-d1"><div class="gal-shot"><span>◫</span></div><div class="gal-body"><h4>Financial Reconciliation View</h4><p>Source-to-target reconciliation status across fee and payment tables.</p></div></div>
+    <div class="gal-card reveal reveal-d2"><div class="gal-shot"><span>◨</span></div><div class="gal-body"><h4>Faculty Workload Dashboard</h4><p>Faculty allocation and course-load visibility for academic planning.</p></div></div>
+    <div class="gal-card reveal"><div class="gal-shot"><span>◧</span></div><div class="gal-body"><h4>Customer Statement Monitor</h4><p>Statement generation status and exception tracking, updated daily.</p></div></div>
+    <div class="gal-card reveal reveal-d1"><div class="gal-shot"><span>▤</span></div><div class="gal-body"><h4>Data Quality Scorecard</h4><p>Null, duplicate and schema-consistency checks across DataHub tables.</p></div></div>
+    <div class="gal-card reveal reveal-d2"><div class="gal-shot"><span>▥</span></div><div class="gal-body"><h4>ETL Audit &amp; Load Summary</h4><p>Pipeline run status, row counts and load timing for operational visibility.</p></div></div>
   </div>
 </div>
 
 <!-- ══════════════ POWER BI GALLERY / DASHBOARDS ══════════════ -->
-<div class="section-full tint-bg" id="dashboards">
+<div class="section-full tint-bg crop-host" id="dashboards">
+  <div class="crop tl"></div><div class="crop tr"></div>
   <div class="section-full-inner">
-    <p class="eyebrow reveal">Power BI Gallery</p>
+    <div class="sheet reveal"><span class="no">SHEET 07</span> / POWER BI GALLERY</div>
     <h2 class="section-title reveal">Live, <em>interactive</em> reports</h2>
 
     <div class="dash-top reveal">
-      <div class="dash-meta">
-        <p>Independent Power BI projects covering sales, HR and insurance analytics — built end-to-end with real data modeling and DAX to practice beyond my day-to-day domain.</p>
-      </div>
-      <div class="live-chip"><span class="live-dot"></span>Live &amp; Interactive</div>
+      <div class="dash-meta"><p>Independent Power BI projects covering sales, HR and insurance analytics — built end-to-end with real data modeling and DAX to practice beyond my day-to-day domain.</p></div>
+      <div class="live-chip"><span class="live-dot"></span>LIVE &amp; INTERACTIVE</div>
     </div>
 
     <div class="dash-tabs reveal">
-      <button class="dash-tab active" data-tab="sales">📊 Sales Analysis</button>
-      <button class="dash-tab" data-tab="hp">👥 HR Analytics</button>
-      <button class="dash-tab" data-tab="insurance">🛡️ Insurance Project</button>
+      <button class="dash-tab active" data-tab="sales">SALES ANALYSIS</button>
+      <button class="dash-tab" data-tab="hp">HR ANALYTICS</button>
+      <button class="dash-tab" data-tab="insurance">INSURANCE PROJECT</button>
     </div>
 
     <div class="dash-panel active" id="panel-sales">
       <div class="embed-shell" id="shell-sales">
         <div class="shimmer" id="shimmer-sales"></div>
-        <div class="embed-chrome"><div class="dc dc-r"></div><div class="dc dc-y"></div><div class="dc dc-g"></div><span class="embed-url">app.powerbi.com · sales_analysis</span></div>
+        <div class="embed-chrome"><div class="dc"></div><div class="dc"></div><div class="dc"></div><span class="embed-url">app.powerbi.com/view · sales_analysis</span></div>
         <iframe title="Sales Analysis" src="https://app.powerbi.com/view?r=eyJrIjoiY2Y0ODdiMzQtMDdmNi00YTQ3LWE1NTQtNTE4NGMzZWZiYjBhIiwidCI6IjY5N2NkYzBhLTU2OTYtNDRmYS04ZmQ0LWMzNWI2MzFjYTBhZCJ9" frameborder="0" allowfullscreen></iframe>
       </div>
     </div>
@@ -1001,7 +1027,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     <div class="dash-panel" id="panel-hp">
       <div class="embed-shell" id="shell-hp">
         <div class="shimmer" id="shimmer-hp"></div>
-        <div class="embed-chrome"><div class="dc dc-r"></div><div class="dc dc-y"></div><div class="dc dc-g"></div><span class="embed-url">app.powerbi.com · hr_analytics</span></div>
+        <div class="embed-chrome"><div class="dc"></div><div class="dc"></div><div class="dc"></div><span class="embed-url">app.powerbi.com/view · hr_analytics</span></div>
         <iframe title="HR Analytics" src="https://app.powerbi.com/view?r=eyJrIjoiZGQzMzc2ZTEtNzJmMy00NTJhLWJlNDctMWJkZWQ0NWE0YWZhIiwidCI6IjY5N2NkYzBhLTU2OTYtNDRmYS04ZmQ0LWMzNWI2MzFjYTBhZCJ9" frameborder="0" allowfullscreen></iframe>
       </div>
     </div>
@@ -1009,7 +1035,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     <div class="dash-panel" id="panel-insurance">
       <div class="embed-shell" id="shell-insurance">
         <div class="shimmer" id="shimmer-insurance"></div>
-        <div class="embed-chrome"><div class="dc dc-r"></div><div class="dc dc-y"></div><div class="dc dc-g"></div><span class="embed-url">app.powerbi.com · insurance_project</span></div>
+        <div class="embed-chrome"><div class="dc"></div><div class="dc"></div><div class="dc"></div><span class="embed-url">app.powerbi.com/reportEmbed · insurance_project</span></div>
         <iframe title="Insurance Project" src="https://app.powerbi.com/reportEmbed?reportId=afa88c0a-768e-4aaa-87b2-e32b5ae45a8c&autoAuth=true&ctid=697cdc0a-5696-44fa-8fd4-c35b631ca0ad&actionBarEnabled=true" frameborder="0" allowfullscreen></iframe>
       </div>
     </div>
@@ -1017,8 +1043,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 </div>
 
 <!-- ══════════════ SQL SHOWCASE ══════════════ -->
-<div class="section">
-  <p class="eyebrow reveal">SQL Showcase</p>
+<div class="section crop-host">
+  <div class="crop tl"></div><div class="crop tr"></div>
+  <div class="sheet reveal"><span class="no">SHEET 08</span> / SQL SHOWCASE</div>
   <h2 class="section-title reveal">Where the <em>logic</em> lives</h2>
   <p class="section-sub reveal">Two patterns I use often at Anubavam — reconciliation and incremental loading.</p>
 
@@ -1063,40 +1090,25 @@ tgt <span class="kw">AS</span> (
 </div>
 
 <!-- ══════════════ CERTIFICATIONS ══════════════ -->
-<div class="tint-bg">
+<div class="tint-bg crop-host">
+  <div class="crop tl"></div><div class="crop tr"></div>
   <div class="section">
-    <p class="eyebrow reveal">Credentials</p>
+    <div class="sheet reveal"><span class="no">SHEET 09</span> / CREDENTIALS</div>
     <h2 class="section-title reveal">Certifications &amp; <em>Learning</em></h2>
     <div class="cert-grid">
-      <div class="cert-card reveal">
-        <span class="cert-icon">🏅</span>
-        <h4>Power BI Data Analyst Associate</h4>
-        <p>Microsoft Certified</p>
-      </div>
-      <div class="cert-card reveal reveal-d1">
-        <span class="cert-icon">💾</span>
-        <h4>SQL (Intermediate)</h4>
-        <p>HackerRank</p>
-      </div>
-      <div class="cert-card reveal reveal-d2">
-        <span class="cert-icon">🌀</span>
-        <h4>Apache Airflow Fundamentals</h4>
-        <p>Astronomer</p>
-      </div>
-      <div class="cert-card reveal reveal-d3">
-        <span class="cert-progress">In Progress</span>
-        <span class="cert-icon">🧩</span>
-        <h4>Fabric Analytics Engineer (DP-600)</h4>
-        <p>Self-Paced Learning</p>
-      </div>
+      <div class="cert-card reveal"><span class="cert-icon">◈</span><h4>Power BI Data Analyst Associate</h4><p>MICROSOFT CERTIFIED</p></div>
+      <div class="cert-card reveal reveal-d1"><span class="cert-icon">◆</span><h4>SQL (Intermediate)</h4><p>HACKERRANK</p></div>
+      <div class="cert-card reveal reveal-d2"><span class="cert-icon">◇</span><h4>Apache Airflow Fundamentals</h4><p>ASTRONOMER</p></div>
+      <div class="cert-card reveal reveal-d3"><span class="cert-progress">In Progress</span><span class="cert-icon">◉</span><h4>Fabric Analytics Engineer (DP-600)</h4><p>SELF-PACED LEARNING</p></div>
     </div>
   </div>
 </div>
 
 <!-- ══════════════ RESUME ══════════════ -->
-<div class="section-full" id="resume">
+<div class="section-full crop-host" id="resume">
+  <div class="crop tl"></div><div class="crop tr"></div>
   <div class="section-full-inner">
-    <p class="eyebrow reveal">Resume</p>
+    <div class="sheet reveal"><span class="no">SHEET 10</span> / RESUME</div>
     <h2 class="section-title reveal">One page, <em>no fluff</em></h2>
 
     <div class="resume-grid">
@@ -1116,9 +1128,10 @@ tgt <span class="kw">AS</span> (
 </div>
 
 <!-- ══════════════ CONTACT ══════════════ -->
-<div id="contact">
+<div id="contact" class="crop-host" style="position:relative;">
   <div class="section">
-    <p class="eyebrow reveal">Get In Touch</p>
+    <div class="crop tl"></div><div class="crop tr"></div><div class="crop bl"></div><div class="crop br"></div>
+    <div class="sheet reveal"><span class="no">SHEET 11</span> / CONTACT</div>
     <h2 class="section-title reveal">Let's talk about a <em>role in Dubai</em></h2>
     <div class="contact-grid">
 
@@ -1134,12 +1147,12 @@ tgt <span class="kw">AS</span> (
           teams in Dubai. If you're hiring, reach out through any of the channels below.
         </p>
         <div class="contact-links">
-          <a href="mailto:analyst.basith@gmail.com" class="clink"><span class="clink-ico">📧</span>analyst.basith@gmail.com</a>
-          <a href="tel:+919994008390" class="clink"><span class="clink-ico">📱</span>+91 99940 08390</a>
-          <a href="https://wa.me/919994008390" target="_blank" rel="noopener" class="clink"><span class="clink-ico">💬</span>WhatsApp</a>
-          <a href="https://linkedin.com/in/basith113" target="_blank" rel="noopener" class="clink"><span class="clink-ico">💼</span>linkedin.com/in/basith113</a>
-          <a href="https://github.com/basith113" target="_blank" rel="noopener" class="clink"><span class="clink-ico">💻</span>github.com/basith113</a>
-          <a href="#" class="clink"><span class="clink-ico">📍</span>Chennai, India → Dubai, UAE</a>
+          <a href="mailto:analyst.basith@gmail.com" class="clink"><span class="clink-ico">@</span>analyst.basith@gmail.com</a>
+          <a href="tel:+919994008390" class="clink"><span class="clink-ico">#</span>+91 99940 08390</a>
+          <a href="https://wa.me/919994008390" target="_blank" rel="noopener" class="clink"><span class="clink-ico">»</span>WhatsApp</a>
+          <a href="https://linkedin.com/in/basith113" target="_blank" rel="noopener" class="clink"><span class="clink-ico">in</span>linkedin.com/in/basith113</a>
+          <a href="https://github.com/basith113" target="_blank" rel="noopener" class="clink"><span class="clink-ico">&lt;/&gt;</span>github.com/basith113</a>
+          <a href="#" class="clink"><span class="clink-ico">◎</span>Chennai, India → Dubai, UAE</a>
         </div>
       </div>
 
@@ -1154,32 +1167,30 @@ tgt <span class="kw">AS</span> (
     </div>
   </div>
 </div>
+</main>
 
 <!-- ══════════════ FOOTER ══════════════ -->
 <footer>
-  <div class="flogo">Abdul<span>.</span>Basith</div>
-  <span>© 2026 Abdul Basith J — Data Analyst Portfolio</span>
-  <span><a href="https://github.com/basith113" target="_blank" rel="noopener">GitHub</a> &nbsp;·&nbsp; <a href="https://linkedin.com/in/basith113" target="_blank" rel="noopener">LinkedIn</a></span>
+  <div class="flogo">ABDUL<span>.</span>BASITH</div>
+  <span>© 2026 — DATA ANALYST PORTFOLIO — SHEET 12/12</span>
+  <span><a href="https://github.com/basith113" target="_blank" rel="noopener">GITHUB</a> · <a href="https://linkedin.com/in/basith113" target="_blank" rel="noopener">LINKEDIN</a></span>
 </footer>
 
 <!-- ══════════════ SCRIPTS ══════════════ -->
 <script>
-/* ── Loader ── */
 window.addEventListener('load', () => {
-  setTimeout(() => document.getElementById('loader').classList.add('hide'), 700);
+  setTimeout(() => document.getElementById('loader').classList.add('hide'), 650);
 });
 
-/* ── Cursor ── */
 const cur = document.getElementById('cursor');
 const ring = document.getElementById('cursor-ring');
-let mx = 0, my = 0, rx = 0, ry = 0;
-let cursorActive = window.matchMedia('(hover:hover)').matches;
-if (cursorActive) {
-  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+let mx=0,my=0,rx=0,ry=0;
+if (window.matchMedia('(hover:hover)').matches) {
+  document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
   (function loop(){
-    cur.style.left = mx + 'px'; cur.style.top = my + 'px';
-    rx += (mx - rx) * .12; ry += (my - ry) * .12;
-    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    cur.style.left=mx+'px'; cur.style.top=my+'px';
+    rx += (mx-rx)*.14; ry += (my-ry)*.14;
+    ring.style.left=rx+'px'; ring.style.top=ry+'px';
     requestAnimationFrame(loop);
   })();
   document.querySelectorAll('a, button, input, textarea, .dash-tab').forEach(el => {
@@ -1188,51 +1199,46 @@ if (cursorActive) {
   });
 }
 
-/* ── Scroll Reveal ── */
 const observer = new IntersectionObserver(entries => {
-  entries.forEach((entry, i) => {
+  entries.forEach((entry,i) => {
     if (entry.isIntersecting) {
-      setTimeout(() => entry.target.classList.add('visible'), i * 45);
+      setTimeout(()=>entry.target.classList.add('visible'), i*40);
       observer.unobserve(entry.target);
     }
   });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+}, { threshold:0.1 });
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
-/* ── Skill bars ── */
 const skillObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      entry.target.querySelectorAll('.skill-fill').forEach((bar, i) => {
-        setTimeout(() => {
+      entry.target.querySelectorAll('.skill-fill').forEach((bar,i) => {
+        setTimeout(()=>{
           const pct = bar.getAttribute('data-fill');
-          bar.style.width = pct + '%';
+          bar.style.width = pct+'%';
           const label = bar.closest('.skill-row').querySelector('.skill-top span[data-w]');
-          if (label) label.textContent = pct + '%';
-        }, i * 100);
+          if (label) label.textContent = pct+'%';
+        }, i*100);
       });
       skillObserver.unobserve(entry.target);
     }
   });
-}, { threshold: 0.2 });
-document.querySelectorAll('.skills-col').forEach(el => skillObserver.observe(el));
+}, { threshold:0.2 });
+document.querySelectorAll('.readout').forEach(el=>skillObserver.observe(el));
 
-/* ── Dashboard Tabs ── */
 const tabs = document.querySelectorAll('.dash-tab');
 const panels = document.querySelectorAll('.dash-panel');
 const loadedShells = new Set(['shell-sales']);
-
 tabs.forEach(tab => {
   tab.addEventListener('click', () => {
     const target = tab.dataset.tab;
-    tabs.forEach(t => t.classList.remove('active'));
+    tabs.forEach(t=>t.classList.remove('active'));
     tab.classList.add('active');
-    panels.forEach(p => p.classList.remove('active'));
-    document.getElementById('panel-' + target).classList.add('active');
-
-    const shellId = 'shell-' + target;
+    panels.forEach(p=>p.classList.remove('active'));
+    document.getElementById('panel-'+target).classList.add('active');
+    const shellId = 'shell-'+target;
     if (!loadedShells.has(shellId)) {
-      setTimeout(() => {
+      setTimeout(()=>{
         const shell = document.getElementById(shellId);
         if (shell) shell.classList.add('loaded');
         loadedShells.add(shellId);
@@ -1240,17 +1246,12 @@ tabs.forEach(tab => {
     }
   });
 });
-
 ['sales','hp','insurance'].forEach(id => {
-  const shell = document.getElementById('shell-' + id);
+  const shell = document.getElementById('shell-'+id);
   const iframe = shell && shell.querySelector('iframe');
-  if (iframe) {
-    iframe.addEventListener('load', () => { shell.classList.add('loaded'); loadedShells.add('shell-' + id); });
-  }
-  if (id === 'sales') setTimeout(() => shell && shell.classList.add('loaded'), 5500);
+  if (iframe) iframe.addEventListener('load', ()=>{ shell.classList.add('loaded'); loadedShells.add('shell-'+id); });
+  if (id==='sales') setTimeout(()=> shell && shell.classList.add('loaded'), 5500);
 });
-
-/* ── Mobile nav fallback: smooth-scroll already handled via CSS scroll-behavior ── */
 </script>
 </body>
 </html>
